@@ -74,4 +74,4 @@ No landing-page sentence uses: leverage, seamless, effortless, robust, powerful,
 | Optional paid output | worksheet pack |
 | Purchase credential | license |
 
-Catalog description: “Make a clear guitar lesson card in under a minute.” It starts with a verb and is 53 characters. The timed phrase describes the brief's measured product goal and does not appear as a visitor claim.
+Catalog description: “Make a clear guitar lesson card during the lesson.” It starts with a verb, has nine words, and is 50 characters.

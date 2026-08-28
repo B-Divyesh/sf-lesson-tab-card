@@ -1,7 +1,7 @@
 {
   "slug": "lesson-tab-card",
   "title": "Lesson Tab Card",
-  "summary": "Make a clear guitar lesson card in under a minute.",
+  "summary": "Make a clear guitar lesson card during the lesson.",
   "territory": "games-creative",
   "user": "Guitar teachers and self-teaching players who need to type a quick, legible chord or scale handout during a lesson.",
   "smallest_useful_product": "A static keyboard-first editor with a six-string chord grid, fingering, one short tab line, validation, SVG and PNG export, and an encoded share link.",

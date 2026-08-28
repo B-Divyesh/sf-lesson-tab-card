@@ -265,7 +265,7 @@ function paidSection() {
     <div class="paid-actions">
       ${licenseNotice ? `<p class="message error">${licenseNotice}</p>` : ''}
       ${paid || isDemo ? `<p class="license-state success">${isDemo ? 'Sample worksheet preview is open in this demo.' : 'Worksheet pack active on this browser.'}</p><button class="button primary" id="export-worksheet">${isDemo ? 'Export sample 4-card worksheet' : 'Export 4-card worksheet'}</button>` : `<a class="button primary" href="${checkoutUrl}">Buy worksheet pack — $9</a>`}
-      <details><summary>Have a license? Paste it</summary><label for="license-token">License token</label><input id="license-token" autocomplete="off" /><button class="button" id="restore-license" type="button">Verify license</button><p id="license-message" aria-live="polite"></p></details>
+      <details><summary>Have a license? Paste it</summary><label for="license-token">License token</label><input id="license-token" autocomplete="off" /><button class="button" id="restore-license" type="button" aria-label="Verify license">Verify license</button><p id="license-message" aria-live="polite"></p></details>
       <p class="fine-print">One-time purchase. Sociobot and Dodo handle checkout and refunds. See <a href="/terms" data-route>terms</a>.</p>
     </div>
   </section>`;

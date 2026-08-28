@@ -93,6 +93,9 @@ test('exports a four-card sample worksheet @claim:worksheet-pack', async ({ page
 });
 
 test('has a clean accessible structure on desktop and mobile', async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
+  page.on('pageerror', (error) => consoleErrors.push(error.message));
   await page.goto('/demo');
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.locator('main')).toHaveCount(1);
@@ -104,6 +107,7 @@ test('has a clean accessible structure on desktop and mobile', async ({ page }) 
   await expect(page.getByRole('button', { name: 'Export SVG' })).toBeVisible();
   await page.keyboard.press('Alt+1');
   await expect(page.getByLabel('Lesson syntax')).toBeFocused();
+  expect(consoleErrors).toEqual([]);
 });
 
 test('uses real route titles and renders legal pages', async ({ page }) => {

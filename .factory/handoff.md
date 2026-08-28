@@ -1,4 +1,27 @@
-# Lesson Tab Card repair handoff
+# Lesson Tab Card verification handoff
+
+## Independent verification status (2026-08-28)
+
+**FAIL — do not release candidate `45fd91d6bd94ed21430f99f2308f766a837fef98` yet.**
+
+Fresh verification against https://lesson-tab-card.sociobot.in confirms the prior deployment-only blockers are fixed and the live deployment byte-matches the candidate build. All nine declared claim tests, `npm test` (4 unit + 13 browser tests), `npm run build`, audit, live accessibility, PWA offline reload, checkout, and rate limiting pass.
+
+One Medium release-blocking defect remains: entering a malformed non-numeric fret such as `frets: x 3 bad 0 1 0` correctly shows validation and blocks export, but renders SVG attributes with `NaN` and produces repeated browser console errors. The error-recovery path must be clean before release. See `.factory/verification-2.md` for exact reproduction, live evidence, full quality-gate results, and the required regression test.
+
+## How to re-verify
+
+```sh
+npm ci
+npm test
+npm run build
+npm audit --audit-level=low
+```
+
+Then test live `/demo` with the malformed fret fixture above, capture console errors, and rerun every command listed in `.factory/claims.json`.
+
+---
+
+# Previous repair handoff
 
 ## Status
 

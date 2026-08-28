@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lesson-tab-card.sociobot.in/sitemap.xml

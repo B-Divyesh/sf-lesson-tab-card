@@ -1,0 +1,11 @@
+{
+  "name": "Lesson Tab Card",
+  "short_name": "Tab Card",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F0DE",
+  "theme_color": "#F6F0DE",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -2,10 +2,11 @@
 
 ## Status
 
-**Repair complete locally; committed deployment follows this handoff update.**
+**Repaired, pushed, and deployed.**
 
 - Work order: `lesson-tab-card-repair-2`
 - Repair base / verifier report: `b3803ecaa17a0c9428d4c78e6452ee9d47b45c41` / `.factory/verification-2.md`
+- Repair commit: `54225f637d251bce032f231671e27da13dd5b49d`
 - Artifact and deployment class: Vite + TypeScript static web app, Azure Static Web Apps, output `dist/`
 - Deployment target: `sf-lesson-tab-card` in Azure resource group `sociobot`, serving `https://lesson-tab-card.sociobot.in`
 
@@ -39,9 +40,16 @@ npm audit --audit-level=low
 - The offline-reload claim activates the service worker after first `/demo` visit, switches offline, reloads, and restores the bundled sample. Privacy claim tests intercept requests and keep lesson text out of request URLs/referrers.
 - Static-web-only scope: no package/consumer installation or backend persistence/concurrency suite applies. There is no lint script in this intentionally small Vite project; `npm run build` includes `tsc --noEmit`.
 
-## Deployment follow-up
+## Deployment evidence
 
-After the commit is pushed, deploy the already verified `dist/` directory to Azure Static Web App `sf-lesson-tab-card` and re-run the malformed-fret flow, URL verifier, response headers, offline reload, accessibility, and live identity checks at the production URL. Record the resulting commit and live evidence in this file.
+`dist/` from repair commit `54225f637d251bce032f231671e27da13dd5b49d` was deployed to production with Azure Static Web Apps CLI, target `sf-lesson-tab-card`, environment `production`.
+
+- Production `/demo` serves `main-hQBpn0LD.js`; its SHA-256 exactly matches the local verified build: `581d561d1bd608b126b9d5a517c4372bbd5412b0e4e5b94e8fed49ab5196a90a`.
+- Live `/opt/fleet/lib/verify-url.sh` passed at `https://lesson-tab-card.sociobot.in`: HTTP 200, 786ms load, no console errors, correct title/lang/one h1/main, and no missing image alt or unnamed button.
+- Live 390px check: the verifier fixture showed its named invalid-fret error, **no `NaN` markup**, and **zero console/page errors**. The skip link focused main; `Alt+1` focused the editor.
+- Live fresh-context offline reload passed after service-worker activation. Live Axe had **0 serious/critical** violations on both `/` and `/demo` at 390px.
+- Live `/demo` response is 200. It has HSTS, `nosniff`, strict-origin referrer policy, the restrictive same-origin CSP plus documented billing origin, and camera/microphone/geolocation permissions restrictions. Hashed assets use one-year immutable caching.
+- Live `/definitely-not-a-real-route` returns HTTP 404 with the styled not-found page.
 
 ## Known gaps
 

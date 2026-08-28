@@ -82,7 +82,7 @@ function renderEditorPage(url: URL) {
   }
 
   app.innerHTML = `${isDemo ? demoBanner() : ''}${header()}
-    <main id="main">
+    <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
           <p class="kicker">LESSON-SPEED NOTATION / 01</p>
@@ -300,7 +300,7 @@ function bindPaid() {
 
 function renderPolicy(kind: 'privacy' | 'terms') {
   const privacy = kind === 'privacy';
-  app.innerHTML = `${header()}<main id="main" class="text-page"><p class="kicker">PLAIN-LANGUAGE POLICY</p><h1 tabindex="-1">${privacy ? 'Your lesson stays on your device' : 'Terms for using Lesson Tab Card'}</h1>
+  app.innerHTML = `${header()}<main id="main" class="text-page" tabindex="-1"><p class="kicker">PLAIN-LANGUAGE POLICY</p><h1 tabindex="-1">${privacy ? 'Your lesson stays on your device' : 'Terms for using Lesson Tab Card'}</h1>
     ${privacy ? `<p class="lede">Lesson Tab Card has no account system and no analytics.</p>
       <h2>What the browser stores</h2><p>The editor stores your current lesson text in local storage. New share links keep the same text after the # sign. Demo mode keeps its sample in memory and does not read or write your saved lesson.</p>
       <h2>What leaves the browser</h2><p>New share-link lesson text and exports do not leave your browser in HTTP requests. If you buy or verify a worksheet license, your browser contacts the Sociobot billing API. We do not send your lesson text with that request.</p>
@@ -316,7 +316,7 @@ function renderPolicy(kind: 'privacy' | 'terms') {
 }
 
 function renderNotFound() {
-  app.innerHTML = `${header()}<main id="main" class="not-found"><div class="broken-grid" aria-hidden="true">× 0 3 ? 2 ×</div><p class="kicker">404 / WRONG FRET</p><h1 tabindex="-1">This page is not on the chart</h1><p>Return to the editor and make a lesson card.</p><a class="button primary" href="/" data-route>Return to the editor</a></main>${footer()}${liveRegions()}`;
+  app.innerHTML = `${header()}<main id="main" class="not-found" tabindex="-1"><div class="broken-grid" aria-hidden="true">× 0 3 ? 2 ×</div><p class="kicker">404 / WRONG FRET</p><h1 tabindex="-1">This page is not on the chart</h1><p>Return to the editor and make a lesson card.</p><a class="button primary" href="/" data-route>Return to the editor</a></main>${footer()}${liveRegions()}`;
 }
 
 function header() {
@@ -336,6 +336,12 @@ function liveRegions() {
 }
 
 function handleRouteClick(event: MouseEvent) {
+  const skip = (event.target as Element).closest<HTMLAnchorElement>('a.skip-link');
+  if (skip) {
+    event.preventDefault();
+    document.querySelector<HTMLElement>('#main')?.focus();
+    return;
+  }
   const target = (event.target as Element).closest<HTMLAnchorElement>('a[data-route]');
   if (!target || target.origin !== location.origin || event.ctrlKey || event.metaKey || event.shiftKey) return;
   const url = new URL(target.href);

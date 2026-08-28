@@ -121,6 +121,9 @@ test('has a clean accessible structure on blank, demo, desktop, and mobile', asy
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.reload();
+  await page.getByRole('link', { name: 'Skip to main content' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main')).toBeFocused();
   await expect(page.getByRole('button', { name: 'Export SVG' })).toBeVisible();
   await page.keyboard.press('Alt+1');
   await expect(page.getByLabel('Lesson syntax')).toBeFocused();

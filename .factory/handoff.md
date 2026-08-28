@@ -1,49 +1,48 @@
-# Lesson Tab Card v1 handoff
+# Lesson Tab Card independent verification handoff
 
-Completed 2026-08-28 for work order `lesson-tab-card-build-1`.
+## Verdict: FAIL — do not release
 
-## What was built
+Independent verification completed 2026-08-28 for candidate `548cbe0cb779115d576fe5fc0bc26d1153a55bd0` at `https://lesson-tab-card.sociobot.in`.
 
-- A responsive, keyboard-first editor for title, chord, six fret values, six finger values, capo, six tab lines, and a teacher note.
-- Strict client-side validation with line-specific fixes for untrusted or incomplete syntax.
-- A live six-string chord card preview with SVG, PNG, encoded share-link, and print output.
-- An isolated `/demo` with a complete G to C exercise, reset action, and no demo persistence.
-- A service worker that caches the app shell and bundled sample for offline reloads.
-- A $9 one-time worksheet pack using the Sociobot checkout and license verification contract. The free editor, validation, sharing, SVG, and PNG remain available without a license. Demo mode can export a sample worksheet without writing license state.
-- Browser-local real draft storage under `lesson-tab-card:source:v1`. License storage uses `sb_license:lesson-tab-card` and a once-daily cached verdict.
-- Real `/privacy`, `/terms`, `/demo`, and in-app 404 routes, plus a static styled `404.html` for Azure Static Web Apps.
-- Product metadata, sitemap, robots rules, security headers, PWA manifest, and an original generated lesson-desk image with provenance.
+The deployment is the candidate build and the free demo works, but release blockers remain:
 
-## Run and verify
+1. The advertised $9 checkout returns HTTP 404 with `{"error":"enabled factory product","status":404}`.
+2. Title, chord, and note overflow is silently truncated, still labeled `VALID`, and exported outside the 900px card.
+3. The blank editor has a serious axe contrast violation: 4.19:1 where 4.5:1 is required.
+4. Opened share links send encoded lesson text to the host in the request query and asset `Referer` headers despite the browser-only privacy statement.
+5. Paid activation and share privacy are not adequately represented by `.factory/claims.json` tests.
+
+Medium defects: mobile navigation/footer links miss the 44px touch-target requirement, and unknown routes render a not-found page with HTTP 200.
+
+Full evidence and remediation steps are in [verification.md](verification.md). Screenshots are in `verification-artifacts/`.
+
+## What passed
+
+- Mandatory cold first-read and one-click sample demo.
+- All seven declared claim commands after `npm ci`.
+- `npm test`: 3 unit and 9 Playwright tests.
+- `npm run build`: exact production build, including TypeScript check.
+- `npm audit`: 0 vulnerabilities.
+- Candidate/live byte identity across deployable files.
+- SVG/PNG/share/demo worksheet happy paths, invalid fret/finger/capo recovery, local draft isolation, XSS smoke test, keyboard shortcuts, and 390px reflow.
+- PWA update check and offline reload of `/demo` and `/privacy`.
+- Security headers, CSP without console violations, immutable hashed-asset caching, and same-origin-only demo traffic.
+- API rate limiting: a 100-request burst yielded 30 HTTP 200 and 70 HTTP 429 responses; all 429s included `Retry-After: 4`.
+- Lighthouse 13.4.1 report: Performance 99, Accessibility 96, Best Practices 100, SEO 100; LCP 0.8s, TBT 110ms, CLS 0.
+
+## Reproduce
 
 ```sh
 npm ci
 npm test
 npm run build
+bash /opt/fleet/lib/verify-url.sh https://lesson-tab-card.sociobot.in /tmp/lesson-tab-card-verify
 ```
 
-The exact deploy command is `npm run build`. Output lands in `dist/`, with `dist/index.html` at its root.
+Run every exact command in `.factory/claims.json` separately after install. Then test the live checkout and scan `/` (not only `/demo`) with axe.
 
-Verification completed against the production build:
+## Next steps
 
-- Unit tests: 3 passed.
-- Playwright tests: 9 passed, including every entry in `.factory/claims.json`.
-- Axe browser scan: 0 serious or critical violations.
-- Factory URL check: title present, `lang="en"`, one `h1`, one `main`, no missing alt text, no unlabeled buttons, and no console errors.
-- Lighthouse mobile: Performance 100, Accessibility 100, Best Practices 100, SEO 100.
-- Lighthouse lab metrics: FCP 1.0 s, LCP 1.0 s, CLS 0, TBT 60 ms. INP is not produced by a non-interactive lab run.
-- Production assets: JavaScript 9.45 KB gzip; CSS 3.20 KB gzip; hero WebP 68 KB; social WebP 72 KB.
-- `npm audit`: 0 vulnerabilities.
+Enable the production Sociobot billing product; fix and validate output field lengths; repair blank-state contrast and touch targets; redesign or qualify share-link privacy; add missing claim coverage; and configure real 404 responses. Re-run the full verification contract after redeployment.
 
-## Design and content records
-
-- `.factory/design.md` contains palette, type, spacing, shape, motion, art direction, and image provenance.
-- `.factory/copy-audit.md` contains first-screen and landing sentence counts plus the terminology table.
-- `.factory/demo.md` documents sandbox entry points, sample data, reset behavior, and storage isolation.
-- `.factory/claims.json` maps each visitor promise to one demo-based test.
-
-## Known gaps and next steps
-
-- The production billing product must still be registered by the factory. No provider product ID is embedded in this repository.
-- Browser SVG text uses system Arial and Consolas-style fonts. Exact line breaks can vary slightly by operating system.
-- The format intentionally supports one compact chord and short tab. Multi-chord score layout, playback, accounts, and song libraries remain out of scope.
+No product source was changed by the verifier. The pre-existing untracked `graphify-out/` directory was left untouched.

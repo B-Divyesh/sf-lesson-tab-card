@@ -6,7 +6,7 @@
 
 Fresh verification against https://lesson-tab-card.sociobot.in confirms the prior deployment-only blockers are fixed and the live deployment byte-matches the candidate build. All nine declared claim tests, `npm test` (4 unit + 13 browser tests), `npm run build`, audit, live accessibility, PWA offline reload, checkout, and rate limiting pass.
 
-One Medium release-blocking defect remains: entering a malformed non-numeric fret such as `frets: x 3 bad 0 1 0` correctly shows validation and blocks export, but renders SVG attributes with `NaN` and produces repeated browser console errors. The error-recovery path must be clean before release. See `.factory/verification-2.md` for exact reproduction, live evidence, full quality-gate results, and the required regression test.
+Two release-blocking defects remain: entering a malformed non-numeric fret such as `frets: x 3 bad 0 1 0` correctly shows validation and blocks export, but renders SVG attributes with `NaN` and produces repeated browser console errors; and multiple visitor-facing storage/free-use/no-tracking promises are not backed by matching entries and observable tests in `.factory/claims.json`. The error-recovery and claims-contract paths must be clean before release. See `.factory/verification-2.md` for exact reproduction, live evidence, full quality-gate results, and required regression/claim coverage.
 
 ## How to re-verify
 

@@ -68,6 +68,16 @@ Root cause is visible in `src/card-svg.ts`: `chordGrid()` calls `Number(fret)` f
 
 This is classified Medium because export remains safely blocked and the error names the corrective action, but it violates the required clean error-recovery experience and the QA console-error check. Under the factory definition of done, the candidate remains **FAIL** until fixed.
 
+### High — several visitor-facing promises are not mapped to claims and observable tests
+
+The mandatory claims contract requires every claim-like statement on the landing page and README to have a matching `.factory/claims.json` entry and one observable sandbox test. The following visible promises do not:
+
+- “Your card stays in this browser.” `browser-private` exercises demo and fragment-link request privacy, but not real-draft storage behavior.
+- “SVG and PNG exports stay free.” `free-exports` proves files download, not that the outputs remain ungated/free.
+- “There is no song library, playback, account, or tracking.” There is no matching claim test for the no-account/no-tracking assertions.
+
+All nine declared commands pass, as recorded above, but that does not meet the stated one-claim/one-test rule for these additional promises. Add exact claims and demo-sandbox tests, or remove/narrow the promises.
+
 ## Functional, accessibility, privacy, and deployment evidence
 
 - Normal live `/demo`: SVG (`g-to-c-change.svg`) and PNG (`g-to-c-change.png`) download; copied fragment link restores byte-for-byte lesson syntax.
@@ -102,4 +112,4 @@ This is a static web/PWA product, so library/CLI consumer installation and backe
 
 1. Prevent malformed fret tokens from reaching numeric SVG layout, and make invalid syntax render without browser console errors or `NaN` attributes.
 2. Add a browser test covering `frets: x 3 bad 0 1 0`, asserting named validation, blocked export, zero console/page errors, and no `NaN` in preview SVG.
-3. Re-run all claims and the affected live invalid-input flow.
+3. Add exact claim entries/tests for the visitor-facing storage, free-export, and no-account/no-tracking promises (or remove/narrow them), then re-run all claims and the affected live invalid-input flow.

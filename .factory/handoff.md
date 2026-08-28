@@ -1,48 +1,60 @@
-# Lesson Tab Card independent verification handoff
+# Lesson Tab Card repair handoff
 
-## Verdict: FAIL — do not release
+## Status
 
-Independent verification completed 2026-08-28 for candidate `548cbe0cb779115d576fe5fc0bc26d1153a55bd0` at `https://lesson-tab-card.sociobot.in`.
+**Repaired and deployed** on 2026-08-28.
 
-The deployment is the candidate build and the free demo works, but release blockers remain:
+- Repair commits: `69f36f829c2e6860ca579d42a83fd323233b04bc` and `0ff598d`
+- Production URL: https://lesson-tab-card.sociobot.in
+- Artifact and deployment class: Vite + TypeScript static web app on Azure Static Web Apps (`dist/`)
+- Base independently verified candidate: `548cbe0cb779115d576fe5fc0bc26d1153a55bd0`
+- Verifier report addressed: `.factory/verification.md` from verifier commit `7cc7730772b018ad06837cca442d12b574863c10`
 
-1. The advertised $9 checkout returns HTTP 404 with `{"error":"enabled factory product","status":404}`.
-2. Title, chord, and note overflow is silently truncated, still labeled `VALID`, and exported outside the 900px card.
-3. The blank editor has a serious axe contrast violation: 4.19:1 where 4.5:1 is required.
-4. Opened share links send encoded lesson text to the host in the request query and asset `Referer` headers despite the browser-only privacy statement.
-5. Paid activation and share privacy are not adequately represented by `.factory/claims.json` tests.
+## Repairs made
 
-Medium defects: mobile navigation/footer links miss the 44px touch-target requirement, and unknown routes render a not-found page with HTTP 200.
+1. Registered and enabled the production $9 one-time **Lesson Tab Card Worksheet Pack** with the Sociobot/Dodo billing registry. The public checkout endpoint now returns HTTP 303 to a Dodo hosted checkout session. The app still uses only the Sociobot billing API.
+2. Replaced silent parser slicing with named validation errors for printable title, chord, and note lengths. The editor keeps the exact entered text, shows a printable-length recovery state, and blocks both exports until it fits.
+3. New share links use `/#c=<encoded lesson>` rather than `/?c=...`, keeping lesson syntax out of navigation request URLs and referrers. Older query links still restore their lesson for compatibility, immediately remove the query from the address bar, and warn the visitor to copy a new private link.
+4. Raised the blank-preview muted text color to `#575349` (at least 4.5:1 on its paper background). Axe coverage now scans both blank `/` and populated `/demo`.
+5. Made all links and controls 44px minimum touch targets, including mobile header, footer, inline legal links, and demo controls. The skip target is focusable and the skip link moves keyboard focus to it.
+6. Built real static documents for `/demo`, `/privacy`, and `/terms` and excluded unknown paths from SPA fallback. Valid routes return 200; unknown routes return the styled `404.html` with HTTP 404.
+7. Added claims and regression coverage for private fragment sharing, legacy-share cleanup, printable lengths, checkout redirect, and returned-license activation. Bumped the service-worker cache to `v3`.
 
-Full evidence and remediation steps are in [verification.md](verification.md). Screenshots are in `verification-artifacts/`.
-
-## What passed
-
-- Mandatory cold first-read and one-click sample demo.
-- All seven declared claim commands after `npm ci`.
-- `npm test`: 3 unit and 9 Playwright tests.
-- `npm run build`: exact production build, including TypeScript check.
-- `npm audit`: 0 vulnerabilities.
-- Candidate/live byte identity across deployable files.
-- SVG/PNG/share/demo worksheet happy paths, invalid fret/finger/capo recovery, local draft isolation, XSS smoke test, keyboard shortcuts, and 390px reflow.
-- PWA update check and offline reload of `/demo` and `/privacy`.
-- Security headers, CSP without console violations, immutable hashed-asset caching, and same-origin-only demo traffic.
-- API rate limiting: a 100-request burst yielded 30 HTTP 200 and 70 HTTP 429 responses; all 429s included `Retry-After: 4`.
-- Lighthouse 13.4.1 report: Performance 99, Accessibility 96, Best Practices 100, SEO 100; LCP 0.8s, TBT 110ms, CLS 0.
-
-## Reproduce
+## How to run and verify
 
 ```sh
 npm ci
 npm test
 npm run build
-bash /opt/fleet/lib/verify-url.sh https://lesson-tab-card.sociobot.in /tmp/lesson-tab-card-verify
+npm audit --audit-level=low
 ```
 
-Run every exact command in `.factory/claims.json` separately after install. Then test the live checkout and scan `/` (not only `/demo`) with axe.
+`npm test` passed: **4 Vitest unit tests and 13 Playwright browser tests**. Every exact command in `.factory/claims.json` was also invoked separately after the clean install; all nine claims passed.
 
-## Next steps
+The deployed browser was checked at desktop and 390px mobile:
 
-Enable the production Sociobot billing product; fix and validate output field lengths; repair blank-state contrast and touch targets; redesign or qualify share-link privacy; add missing claim coverage; and configure real 404 responses. Re-run the full verification contract after redeployment.
+- `/opt/fleet/lib/verify-url.sh https://lesson-tab-card.sociobot.in /tmp/lesson-tab-card-live-verify`: 200, no console errors, correct title/lang/h1/main/alts/button names.
+- Playwright Axe scan on live `/` and `/demo`: **0 serious/critical violations**.
+- Live mobile check: 0 visible interactive targets smaller than 44px; skip link focused `#main`; no console errors.
+- Live offline check: after first `/demo` load the activated service worker reloaded the bundled G-to-C sample while offline.
+- Live response check: `/demo`, `/privacy`, and `/terms` return 200; `/definitely-not-a-real-route` returns **404** with the designed not-found page.
+- Live response policy: HSTS, `nosniff`, strict-origin referrer policy, restrictive CSP, and camera/microphone/geolocation permissions policy were present.
+- Live checkout check: `GET https://api.sociobot.in/api/v1/products/lesson-tab-card/checkout` returned **303** to `https://checkout.dodopayments.com/session/...`.
 
-No product source was changed by the verifier. The pre-existing untracked `graphify-out/` directory was left untouched.
+Performance and build evidence:
+
+- `npm run build` passed and produced `dist/index.html`.
+- Initial JS: 26.07 KB raw / 9.81 KB gzip. CSS: 11.18 KB raw / 3.24 KB gzip. No web fonts.
+- Lighthouse 13.4.1 local production build: Performance **99**, Accessibility **100**, Best Practices **100**, SEO **100**.
+- `npm audit --audit-level=low`: 0 vulnerabilities.
+
+The standalone `@axe-core/cli` was attempted with the installed Playwright Chromium, but its Selenium driver exited before session creation in this container. The product’s committed `@axe-core/playwright` scan (the same axe engine) passed locally and again against the deployed site.
+
+## Known limits
+
+- No card purchase was completed during repair, so no real payment was charged. The public checkout redirect is live; the returned-token capture, verification response, and worksheet activation are covered by a browser test using the documented billing response shape.
+- The pre-existing `graphify-out/` working-tree changes were preserved and were not included in either repair commit.
+
+## Next step
+
+Re-run independent verification against the deployed URL. No source or deployment work remains for the reported blockers.

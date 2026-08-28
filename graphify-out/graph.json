@@ -16,39 +16,28 @@
       "source_location": "L1"
     },
     {
-      "id": "src_license_verdict",
-      "label": "Verdict",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "verdict",
-      "source_file": "src/license.ts",
-      "source_location": "L6"
-    },
-    {
       "id": "src_model_parseresult",
       "label": "ParseResult",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 6,
+      "community": 5,
       "file_type": "code",
       "norm_label": "parseresult",
       "source_file": "src/model.ts",
       "source_location": "L11"
     },
     {
-      "id": "src_license_cachedlicenseisvalid",
-      "label": "cachedLicenseIsValid()",
+      "id": "src_license_verdict",
+      "label": "Verdict",
       "_callable": true,
+      "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 6,
       "file_type": "code",
-      "norm_label": "cachedlicenseisvalid()",
+      "norm_label": "verdict",
       "source_file": "src/license.ts",
-      "source_location": "L19"
+      "source_location": "L6"
     },
     {
       "id": "src_license_capturereturnedlicense",
@@ -62,6 +51,17 @@
       "source_location": "L8"
     },
     {
+      "id": "src_license_restorelicense",
+      "label": "restoreLicense()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "restorelicense()",
+      "source_file": "src/license.ts",
+      "source_location": "L41"
+    },
+    {
       "id": "src_main_announce",
       "label": "announce()",
       "_callable": true,
@@ -70,7 +70,7 @@
       "file_type": "code",
       "norm_label": "announce()",
       "source_file": "src/main.ts",
-      "source_location": "L342"
+      "source_location": "L359"
     },
     {
       "id": "src_main_bindeditor",
@@ -81,7 +81,18 @@
       "file_type": "code",
       "norm_label": "bindeditor()",
       "source_file": "src/main.ts",
-      "source_location": "L157"
+      "source_location": "L164"
+    },
+    {
+      "id": "src_main_bindpaid",
+      "label": "bindPaid()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "bindpaid()",
+      "source_file": "src/main.ts",
+      "source_location": "L284"
     },
     {
       "id": "src_main_boot",
@@ -103,7 +114,7 @@
       "file_type": "code",
       "norm_label": "copysharelink()",
       "source_file": "src/main.ts",
-      "source_location": "L241"
+      "source_location": "L251"
     },
     {
       "id": "src_main_demobanner",
@@ -114,7 +125,7 @@
       "file_type": "code",
       "norm_label": "demobanner()",
       "source_file": "src/main.ts",
-      "source_location": "L319"
+      "source_location": "L330"
     },
     {
       "id": "src_main_editorsection",
@@ -125,7 +136,7 @@
       "file_type": "code",
       "norm_label": "editorsection()",
       "source_file": "src/main.ts",
-      "source_location": "L126"
+      "source_location": "L133"
     },
     {
       "id": "src_main_editorshortcuts",
@@ -136,7 +147,7 @@
       "file_type": "code",
       "norm_label": "editorshortcuts()",
       "source_file": "src/main.ts",
-      "source_location": "L190"
+      "source_location": "L197"
     },
     {
       "id": "src_main_escapehtml",
@@ -147,7 +158,7 @@
       "file_type": "code",
       "norm_label": "escapehtml()",
       "source_file": "src/main.ts",
-      "source_location": "L349"
+      "source_location": "L366"
     },
     {
       "id": "src_main_exportcard",
@@ -158,7 +169,7 @@
       "file_type": "code",
       "norm_label": "exportcard()",
       "source_file": "src/main.ts",
-      "source_location": "L225"
+      "source_location": "L235"
     },
     {
       "id": "src_main_footer",
@@ -169,7 +180,7 @@
       "file_type": "code",
       "norm_label": "footer()",
       "source_file": "src/main.ts",
-      "source_location": "L315"
+      "source_location": "L326"
     },
     {
       "id": "src_main_handlerouteclick",
@@ -180,7 +191,7 @@
       "file_type": "code",
       "norm_label": "handlerouteclick()",
       "source_file": "src/main.ts",
-      "source_location": "L327"
+      "source_location": "L338"
     },
     {
       "id": "src_main_header",
@@ -191,7 +202,7 @@
       "file_type": "code",
       "norm_label": "header()",
       "source_file": "src/main.ts",
-      "source_location": "L311"
+      "source_location": "L322"
     },
     {
       "id": "src_main_liveregions",
@@ -202,7 +213,7 @@
       "file_type": "code",
       "norm_label": "liveregions()",
       "source_file": "src/main.ts",
-      "source_location": "L323"
+      "source_location": "L334"
     },
     {
       "id": "src_main_navigate",
@@ -213,7 +224,7 @@
       "file_type": "code",
       "norm_label": "navigate()",
       "source_file": "src/main.ts",
-      "source_location": "L336"
+      "source_location": "L353"
     },
     {
       "id": "src_main_paidsection",
@@ -224,7 +235,7 @@
       "file_type": "code",
       "norm_label": "paidsection()",
       "source_file": "src/main.ts",
-      "source_location": "L262"
+      "source_location": "L272"
     },
     {
       "id": "src_main_rendereditorpage",
@@ -246,7 +257,7 @@
       "file_type": "code",
       "norm_label": "rendernotfound()",
       "source_file": "src/main.ts",
-      "source_location": "L307"
+      "source_location": "L318"
     },
     {
       "id": "src_main_renderpolicy",
@@ -257,7 +268,7 @@
       "file_type": "code",
       "norm_label": "renderpolicy()",
       "source_file": "src/main.ts",
-      "source_location": "L291"
+      "source_location": "L301"
     },
     {
       "id": "src_main_route",
@@ -290,7 +301,7 @@
       "file_type": "code",
       "norm_label": "updatepreview()",
       "source_file": "src/main.ts",
-      "source_location": "L200"
+      "source_location": "L207"
     },
     {
       "id": "src_card_svg_cardsvg",
@@ -381,11 +392,77 @@
       "source_location": "L44"
     },
     {
+      "id": "src_model_decodesyntax",
+      "label": "decodeSyntax()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "decodesyntax()",
+      "source_file": "src/model.ts",
+      "source_location": "L132"
+    },
+    {
+      "id": "src_model_emptycard",
+      "label": "emptyCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "emptycard()",
+      "source_file": "src/model.ts",
+      "source_location": "L36"
+    },
+    {
+      "id": "src_model_encodesyntax",
+      "label": "encodeSyntax()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "encodesyntax()",
+      "source_file": "src/model.ts",
+      "source_location": "L125"
+    },
+    {
+      "id": "src_model_parsesyntax",
+      "label": "parseSyntax()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "parsesyntax()",
+      "source_file": "src/model.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "src_model_validatesix",
+      "label": "validateSix()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "validatesix()",
+      "source_file": "src/model.ts",
+      "source_location": "L115"
+    },
+    {
+      "id": "src_license_cachedlicenseisvalid",
+      "label": "cachedLicenseIsValid()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "cachedlicenseisvalid()",
+      "source_file": "src/license.ts",
+      "source_location": "L19"
+    },
+    {
       "id": "src_license_hasstoredlicense",
       "label": "hasStoredLicense()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
       "file_type": "code",
       "norm_label": "hasstoredlicense()",
       "source_file": "src/license.ts",
@@ -396,29 +473,18 @@
       "label": "readVerdict()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
       "file_type": "code",
       "norm_label": "readverdict()",
       "source_file": "src/license.ts",
       "source_location": "L62"
     },
     {
-      "id": "src_license_restorelicense",
-      "label": "restoreLicense()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "restorelicense()",
-      "source_file": "src/license.ts",
-      "source_location": "L41"
-    },
-    {
       "id": "src_license_verifystoredlicense",
       "label": "verifyStoredLicense()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
       "file_type": "code",
       "norm_label": "verifystoredlicense()",
       "source_file": "src/license.ts",
@@ -429,77 +495,11 @@
       "label": "verifyToken()",
       "_callable": true,
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
       "file_type": "code",
       "norm_label": "verifytoken()",
       "source_file": "src/license.ts",
       "source_location": "L49"
-    },
-    {
-      "id": "src_main_bindpaid",
-      "label": "bindPaid()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "bindpaid()",
-      "source_file": "src/main.ts",
-      "source_location": "L274"
-    },
-    {
-      "id": "src_model_decodesyntax",
-      "label": "decodeSyntax()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "decodesyntax()",
-      "source_file": "src/model.ts",
-      "source_location": "L114"
-    },
-    {
-      "id": "src_model_emptycard",
-      "label": "emptyCard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "emptycard()",
-      "source_file": "src/model.ts",
-      "source_location": "L27"
-    },
-    {
-      "id": "src_model_encodesyntax",
-      "label": "encodeSyntax()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "encodesyntax()",
-      "source_file": "src/model.ts",
-      "source_location": "L107"
-    },
-    {
-      "id": "src_model_parsesyntax",
-      "label": "parseSyntax()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "parsesyntax()",
-      "source_file": "src/model.ts",
-      "source_location": "L31"
-    },
-    {
-      "id": "src_model_validatesix",
-      "label": "validateSix()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "validatesix()",
-      "source_file": "src/model.ts",
-      "source_location": "L97"
     },
     {
       "id": "src_main",
@@ -1052,10 +1052,50 @@
       "source_location": "L1"
     },
     {
+      "id": "src_model",
+      "label": "model.ts",
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "model.ts",
+      "source_file": "src/model.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_model_printablelimits",
+      "label": "printableLimits",
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "printablelimits",
+      "source_file": "src/model.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "src_model_samplesyntax",
+      "label": "sampleSyntax",
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "samplesyntax",
+      "source_file": "src/model.ts",
+      "source_location": "L22"
+    },
+    {
+      "id": "src_model_test",
+      "label": "model.test.ts",
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "model.test.ts",
+      "source_file": "src/model.test.ts",
+      "source_location": "L1"
+    },
+    {
       "id": "src_license",
       "label": "license.ts",
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
       "file_type": "code",
       "norm_label": "license.ts",
       "source_file": "src/license.ts",
@@ -1065,41 +1105,11 @@
       "id": "src_license_checkouturl",
       "label": "checkoutUrl",
       "_origin": "ast",
-      "community": 5,
+      "community": 6,
       "file_type": "code",
       "norm_label": "checkouturl",
       "source_file": "src/license.ts",
       "source_location": "L67"
-    },
-    {
-      "id": "src_model",
-      "label": "model.ts",
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "model.ts",
-      "source_file": "src/model.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_model_samplesyntax",
-      "label": "sampleSyntax",
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "samplesyntax",
-      "source_file": "src/model.ts",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_model_test",
-      "label": "model.test.ts",
-      "_origin": "ast",
-      "community": 6,
-      "file_type": "code",
-      "norm_label": "model.test.ts",
-      "source_file": "src/model.test.ts",
-      "source_location": "L1"
     },
     {
       "id": "public_service_worker",
@@ -1344,7 +1354,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L164",
+      "source_location": "L171",
       "weight": 1.0
     },
     {
@@ -1356,7 +1366,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L166",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -1368,7 +1378,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L176",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -1380,7 +1390,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L186",
+      "source_location": "L193",
       "weight": 1.0
     },
     {
@@ -1392,7 +1402,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L276",
+      "source_location": "L286",
       "weight": 1.0
     },
     {
@@ -1404,7 +1414,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L277",
+      "source_location": "L287",
       "weight": 1.0
     },
     {
@@ -1416,7 +1426,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L278",
+      "source_location": "L288",
       "weight": 1.0
     },
     {
@@ -1428,7 +1438,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L285",
+      "source_location": "L295",
       "weight": 1.0
     },
     {
@@ -1440,7 +1450,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L286",
+      "source_location": "L296",
       "weight": 1.0
     },
     {
@@ -1488,7 +1498,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L242",
+      "source_location": "L252",
       "weight": 1.0
     },
     {
@@ -1500,7 +1510,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L244",
+      "source_location": "L254",
       "weight": 1.0
     },
     {
@@ -1512,7 +1522,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L247",
+      "source_location": "L257",
       "weight": 1.0
     },
     {
@@ -1524,7 +1534,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L196",
+      "source_location": "L203",
       "weight": 1.0
     },
     {
@@ -1536,7 +1546,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L226",
+      "source_location": "L236",
       "weight": 1.0
     },
     {
@@ -1548,7 +1558,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L228",
+      "source_location": "L238",
       "weight": 1.0
     },
     {
@@ -1560,7 +1570,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L233",
+      "source_location": "L243",
       "weight": 1.0
     },
     {
@@ -1572,7 +1582,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L234",
+      "source_location": "L244",
       "weight": 1.0
     },
     {
@@ -1584,7 +1594,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L333",
+      "source_location": "L350",
       "weight": 1.0
     },
     {
@@ -1596,139 +1606,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L339",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_paidsection",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L111",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_footer",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L112",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_liveregions",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L112",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_bindeditor",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L113",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_updatepreview",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L115",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_license_verifystoredlicense",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L116",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_license_hasstoredlicense",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L117",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_announce",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L122",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_model_decodesyntax",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L71",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_demobanner",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L77",
-      "weight": 1.0
-    },
-    {
-      "source": "src_main_rendereditorpage",
-      "target": "src_main_header",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/main.ts",
-      "source_location": "L77",
+      "source_location": "L356",
       "weight": 1.0
     },
     {
@@ -1740,7 +1618,139 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L93",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_paidsection",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_footer",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_liveregions",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_bindeditor",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_updatepreview",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L122",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_license_verifystoredlicense",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_license_hasstoredlicense",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_announce",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L129",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_model_decodesyntax",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_demobanner",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "src_main_rendereditorpage",
+      "target": "src_main_header",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/main.ts",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -1752,7 +1762,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L308",
+      "source_location": "L319",
       "weight": 1.0
     },
     {
@@ -1764,7 +1774,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L308",
+      "source_location": "L319",
       "weight": 1.0
     },
     {
@@ -1776,7 +1786,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L308",
+      "source_location": "L319",
       "weight": 1.0
     },
     {
@@ -1788,7 +1798,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L293",
+      "source_location": "L303",
       "weight": 1.0
     },
     {
@@ -1800,7 +1810,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L304",
+      "source_location": "L315",
       "weight": 1.0
     },
     {
@@ -1812,7 +1822,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L304",
+      "source_location": "L315",
       "weight": 1.0
     },
     {
@@ -1872,7 +1882,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L205",
+      "source_location": "L212",
       "weight": 1.0
     },
     {
@@ -1884,7 +1894,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L213",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
@@ -1896,7 +1906,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/main.ts",
-      "source_location": "L215",
+      "source_location": "L225",
       "weight": 1.0
     },
     {
@@ -1908,7 +1918,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/model.ts",
-      "source_location": "L35",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -1920,7 +1930,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/model.ts",
-      "source_location": "L76",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -2298,6 +2308,18 @@
     {
       "source": "src_model_test",
       "target": "src_model_parsesyntax",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/model.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_model_test",
+      "target": "src_model_printablelimits",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2852,7 +2874,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L126",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -2863,7 +2885,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L157",
+      "source_location": "L164",
       "weight": 1.0
     },
     {
@@ -2874,7 +2896,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L190",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -2896,7 +2918,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L200",
+      "source_location": "L207",
       "weight": 1.0
     },
     {
@@ -2907,7 +2929,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L225",
+      "source_location": "L235",
       "weight": 1.0
     },
     {
@@ -2918,7 +2940,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L241",
+      "source_location": "L251",
       "weight": 1.0
     },
     {
@@ -2929,7 +2951,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L262",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -2940,7 +2962,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L274",
+      "source_location": "L284",
       "weight": 1.0
     },
     {
@@ -2951,7 +2973,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L291",
+      "source_location": "L301",
       "weight": 1.0
     },
     {
@@ -2962,7 +2984,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L307",
+      "source_location": "L318",
       "weight": 1.0
     },
     {
@@ -2973,7 +2995,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L311",
+      "source_location": "L322",
       "weight": 1.0
     },
     {
@@ -2984,7 +3006,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L315",
+      "source_location": "L326",
       "weight": 1.0
     },
     {
@@ -2995,7 +3017,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L319",
+      "source_location": "L330",
       "weight": 1.0
     },
     {
@@ -3006,7 +3028,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L323",
+      "source_location": "L334",
       "weight": 1.0
     },
     {
@@ -3017,7 +3039,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L327",
+      "source_location": "L338",
       "weight": 1.0
     },
     {
@@ -3028,7 +3050,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L336",
+      "source_location": "L353",
       "weight": 1.0
     },
     {
@@ -3039,7 +3061,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L342",
+      "source_location": "L359",
       "weight": 1.0
     },
     {
@@ -3050,7 +3072,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/main.ts",
-      "source_location": "L349",
+      "source_location": "L366",
       "weight": 1.0
     },
     {
@@ -3110,17 +3132,6 @@
     },
     {
       "source": "src_model",
-      "target": "src_model_encodesyntax",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/model.ts",
-      "source_location": "L107",
-      "weight": 1.0
-    },
-    {
-      "source": "src_model",
       "target": "src_model_parseresult",
       "relation": "contains",
       "_origin": "ast",
@@ -3132,13 +3143,46 @@
     },
     {
       "source": "src_model",
+      "target": "src_model_validatesix",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/model.ts",
+      "source_location": "L115",
+      "weight": 1.0
+    },
+    {
+      "source": "src_model",
+      "target": "src_model_encodesyntax",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/model.ts",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "src_model",
       "target": "src_model_decodesyntax",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/model.ts",
-      "source_location": "L114",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "src_model",
+      "target": "src_model_printablelimits",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/model.ts",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -3149,7 +3193,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/model.ts",
-      "source_location": "L13",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -3160,7 +3204,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/model.ts",
-      "source_location": "L27",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -3171,18 +3215,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/model.ts",
-      "source_location": "L31",
-      "weight": 1.0
-    },
-    {
-      "source": "src_model",
-      "target": "src_model_validatesix",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/model.ts",
-      "source_location": "L97",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -3359,7 +3392,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "src/main.ts",
-      "source_location": "L168",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -3388,5 +3421,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7cc7730772b018ad06837cca442d12b574863c10"
+  "built_at_commit": "45fd91d6bd94ed21430f99f2308f766a837fef98"
 }

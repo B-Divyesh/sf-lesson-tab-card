@@ -1,12 +1,13 @@
 {
   "communities": {
     "0": [
-      "src_license_cachedlicenseisvalid",
       "src_license_capturereturnedlicense",
+      "src_license_restorelicense",
       "src_main",
       "src_main_announce",
       "src_main_app",
       "src_main_bindeditor",
+      "src_main_bindpaid",
       "src_main_boot",
       "src_main_copysharelink",
       "src_main_demobanner",
@@ -97,26 +98,26 @@
       "src_model_card"
     ],
     "5": [
-      "src_license",
-      "src_license_checkouturl",
-      "src_license_hasstoredlicense",
-      "src_license_readverdict",
-      "src_license_restorelicense",
-      "src_license_verdict",
-      "src_license_verifystoredlicense",
-      "src_license_verifytoken",
-      "src_main_bindpaid"
-    ],
-    "6": [
       "src_model",
       "src_model_decodesyntax",
       "src_model_emptycard",
       "src_model_encodesyntax",
       "src_model_parseresult",
       "src_model_parsesyntax",
+      "src_model_printablelimits",
       "src_model_samplesyntax",
       "src_model_test",
       "src_model_validatesix"
+    ],
+    "6": [
+      "src_license",
+      "src_license_cachedlicenseisvalid",
+      "src_license_checkouturl",
+      "src_license_hasstoredlicense",
+      "src_license_readverdict",
+      "src_license_verdict",
+      "src_license_verifystoredlicense",
+      "src_license_verifytoken"
     ],
     "7": [
       "public_service_worker",
@@ -133,13 +134,13 @@
     ]
   },
   "cohesion": {
-    "0": 0.19666666666666666,
+    "0": 0.19076923076923077,
     "1": 0.09090909090909091,
     "2": 0.13333333333333333,
     "3": 0.15384615384615385,
     "4": 0.45454545454545453,
-    "5": 0.3055555555555556,
-    "6": 0.3888888888888889,
+    "5": 0.35555555555555557,
+    "6": 0.35714285714285715,
     "7": 1.0,
     "8": 1.0,
     "9": 1.0,
@@ -172,6 +173,16 @@
       "degree": 8
     },
     {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 7
+    },
+    {
+      "id": "src_main_route",
+      "label": "route()",
+      "degree": 7
+    },
+    {
       "id": "src_main_bindeditor",
       "label": "bindEditor()",
       "degree": 7
@@ -182,39 +193,18 @@
       "degree": 7
     },
     {
-      "id": "src_main_route",
-      "label": "route()",
-      "degree": 7
-    },
-    {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 7
-    },
-    {
-      "id": "src_main_announce",
-      "label": "announce()",
+      "id": "src_export_downloadpng",
+      "label": "downloadPng()",
       "degree": 6
     }
   ],
   "surprises": [
     {
-      "source": "copyShareLink()",
-      "target": "encodeSyntax()",
+      "source": "boot()",
+      "target": "cachedLicenseIsValid()",
       "source_files": [
         "src/main.ts",
-        "src/model.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "copyShareLink()",
-      "target": "parseSyntax()",
-      "source_files": [
-        "src/main.ts",
-        "src/model.ts"
+        "src/license.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
@@ -223,6 +213,17 @@
     {
       "source": "exportCard()",
       "target": "downloadPng()",
+      "source_files": [
+        "src/main.ts",
+        "src/export.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "bindPaid()",
+      "target": "downloadSvg()",
       "source_files": [
         "src/main.ts",
         "src/export.ts"
@@ -243,11 +244,11 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "exportCard()",
-      "target": "parseSyntax()",
+      "source": "renderEditorPage()",
+      "target": "hasStoredLicense()",
       "source_files": [
         "src/main.ts",
-        "src/model.ts"
+        "src/license.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",

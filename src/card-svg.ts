@@ -10,6 +10,12 @@ export function chordGrid(card: Card): string {
     if (fret === 'x' || fret === '0') {
       return `<text x="${x}" y="22" text-anchor="middle" class="open">${fret === 'x' ? '×' : '○'}</text>`;
     }
+    // A partially edited card can reach the preview before validation has
+    // finished. Never turn untrusted fret text into an SVG coordinate: an
+    // invalid value such as "bad" would otherwise produce cy="NaN" and a
+    // browser console error. Invalid values remain visible in the editor's
+    // named validation message, while the diagram simply omits that dot.
+    if (!/^(?:[1-9]|1[0-2])$/.test(fret)) return '';
     const relative = Number(fret) - base + 1;
     if (relative < 1 || relative > 5) return '';
     const y = 42 + (relative - 0.5) * 26;

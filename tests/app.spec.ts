@@ -34,15 +34,58 @@ test('restores the exact lesson from its private fragment link @claim:share-link
   await expect(page.getByText('Ready to export and share.')).toBeVisible();
 });
 
-test('names invalid lesson fields before export @claim:syntax-validation', async ({ page }) => {
+test('names invalid lesson fields before export without malformed preview SVG @claim:syntax-validation @regression:invalid-fret-preview', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+  page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/demo');
   await page.getByLabel('Lesson syntax').fill('title: C chord\nchord: C\nfrets: x 3 bad 0 1 0\nfingers: x 3 2 0 1 0\ncapo: 20');
   await expect(page.getByText('Frets value 3 is invalid.')).toBeVisible();
   await expect(page.getByText('Line 5 has an invalid capo. Use a whole number from 0 to 12.')).toBeVisible();
+  await expect(page.locator('#preview')).not.toContainText('NaN');
+  expect(await page.locator('#preview').innerHTML()).not.toContain('NaN');
   const downloads: string[] = [];
   page.on('download', (download) => downloads.push(download.suggestedFilename()));
   await page.getByRole('button', { name: 'Export SVG' }).click();
   expect(downloads).toEqual([]);
+  expect(errors).toEqual([]);
+});
+
+test('keeps the real draft in this browser after reload @claim:local-draft-storage', async ({ page }) => {
+  const source = 'title: Browser draft\nchord: C\nfrets: x 3 2 0 1 0\nfingers: x 3 2 0 1 0\ncapo: 0\nnote: Stored in this browser.';
+  await page.goto('/');
+  await page.getByLabel('Lesson syntax').fill(source);
+  expect(await page.evaluate(() => localStorage.getItem('lesson-tab-card:source:v1'))).toBe(source);
+  await page.reload();
+  await expect(page.getByLabel('Lesson syntax')).toHaveValue(source);
+});
+
+test('keeps SVG and PNG exports available without a license or checkout @claim:license-free-card-exports', async ({ page }) => {
+  const requests: string[] = [];
+  page.on('request', (request) => requests.push(request.url()));
+  await page.goto('/demo');
+  expect(await page.evaluate(() => localStorage.getItem('sb_license:lesson-tab-card'))).toBeNull();
+
+  const svgDownload = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export SVG' }).click();
+  expect((await svgDownload).suggestedFilename()).toBe('g-to-c-change.svg');
+
+  const pngDownload = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export PNG' }).click();
+  expect((await pngDownload).suggestedFilename()).toBe('g-to-c-change.png');
+  expect(requests.every((url) => new URL(url).origin === 'http://127.0.0.1:4173')).toBeTruthy();
+});
+
+test('uses no song library, playback, account, or tracking request to make a card @claim:no-account-no-tracking', async ({ page }) => {
+  const requests: string[] = [];
+  page.on('request', (request) => requests.push(request.url()));
+  await page.goto('/demo');
+  await expect(page.getByText('There is no song library, playback, account, or tracking.')).toBeVisible();
+  expect(await page.locator('audio, video, input[type="password"], input[type="email"], a[href*="login" i], a[href*="account" i]').count()).toBe(0);
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export SVG' }).click();
+  await download;
+  expect(requests.every((url) => new URL(url).origin === 'http://127.0.0.1:4173')).toBeTruthy();
 });
 
 test('keeps demo changes away from the saved draft @claim:demo-isolation', async ({ page }) => {

@@ -1,3 +1,56 @@
+# Lesson Tab Card repair handoff
+
+## Status
+
+**Repair complete locally; committed deployment follows this handoff update.**
+
+- Work order: `lesson-tab-card-repair-2`
+- Repair base / verifier report: `b3803ecaa17a0c9428d4c78e6452ee9d47b45c41` / `.factory/verification-2.md`
+- Artifact and deployment class: Vite + TypeScript static web app, Azure Static Web Apps, output `dist/`
+- Deployment target: `sf-lesson-tab-card` in Azure resource group `sociobot`, serving `https://lesson-tab-card.sociobot.in`
+
+## Repairs
+
+1. The chord-diagram renderer now accepts only validated fret tokens (`1` through `12`) before calculating SVG positions. An invalid in-progress token such as `bad` is omitted from the diagram while its named validation error remains visible. It can no longer produce `cy="NaN"` or `y="NaN"` browser errors.
+2. Added a direct renderer unit test and browser regression `@regression:invalid-fret-preview`. The browser test enters the verifier's exact malformed-fret fixture, checks named validation and blocked export, then asserts zero browser/page errors and no `NaN` preview markup.
+3. Added a one-to-one claims contract for the previously unmapped visitor promises:
+   - `local-draft-storage`: real draft persists in the namespaced browser storage and restores after reload.
+   - `license-free-card-exports`: SVG and PNG work with no stored license and no checkout/license request.
+   - `no-account-no-tracking`: the demo flow has no playback/account controls and makes only same-origin requests.
+
+## Verification evidence
+
+Fresh `npm ci` passed with 0 audit vulnerabilities. These quality gates also passed:
+
+```sh
+npm test
+npm run build
+npm audit --audit-level=low
+```
+
+- `npm test`: **5 Vitest unit tests + 16 Playwright browser tests passed**.
+- `npm run build`: passed typecheck and produced `dist/index.html`.
+- Production bundle: JS **26.11 kB raw / 9.82 kB gzip**; CSS **11.18 kB raw / 3.24 kB gzip**; no web fonts.
+- `npm audit --audit-level=low`: 0 vulnerabilities.
+- Every exact command in `.factory/claims.json` was run separately from a clean install; all 12 passed. Each claim tag occurs exactly once in the browser suite.
+- Committed Playwright coverage exercised blank desktop, `/demo`, 390px mobile, keyboard skip link, `Alt+1`, 44px target sizing, and Axe on blank and populated pages. Axe reported **0 serious or critical** violations.
+- The exact malformed fixture at 390px (`frets: x 3 bad 0 1 0`, `capo: 99`) yielded named validation, no download, no `NaN` preview markup, and **zero console/page errors**.
+- `/opt/fleet/lib/verify-url.sh http://127.0.0.1:4173 /tmp/lesson-tab-card-repair-verify` passed: 200, 604ms local load, no console errors, title/lang, one h1, main landmark, image alt text, and button names all present.
+- The offline-reload claim activates the service worker after first `/demo` visit, switches offline, reloads, and restores the bundled sample. Privacy claim tests intercept requests and keep lesson text out of request URLs/referrers.
+- Static-web-only scope: no package/consumer installation or backend persistence/concurrency suite applies. There is no lint script in this intentionally small Vite project; `npm run build` includes `tsc --noEmit`.
+
+## Deployment follow-up
+
+After the commit is pushed, deploy the already verified `dist/` directory to Azure Static Web App `sf-lesson-tab-card` and re-run the malformed-fret flow, URL verifier, response headers, offline reload, accessibility, and live identity checks at the production URL. Record the resulting commit and live evidence in this file.
+
+## Known gaps
+
+None locally. The pre-existing `graphify-out/` working-tree changes are unrelated and deliberately not included in the repair commit.
+
+---
+
+## Historical verifier handoff
+
 # Lesson Tab Card verification handoff
 
 ## Independent verification status (2026-08-28)

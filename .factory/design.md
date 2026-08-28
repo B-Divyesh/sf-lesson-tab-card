@@ -18,7 +18,7 @@ This fits the product because guitar lessons are physical and immediate. The vis
 | `--blue-dark` | `#083A9B` | accessible blue text |
 | `--red` | `#B42318` | validation errors |
 | `--green` | `#216E39` | valid state |
-| `--muted` | `#625F54` | supporting text |
+| `--muted` | `#575349` | supporting text; meets 4.5:1 on the preview paper |
 
 The product uses a single light treatment. Printing and instant visual recognition matter more than theme switching. The background is painted explicitly.
 

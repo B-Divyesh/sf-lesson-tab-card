@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { decodeSyntax, encodeSyntax, parseSyntax, sampleSyntax } from './model';
+import { decodeSyntax, encodeSyntax, parseSyntax, printableLimits, sampleSyntax } from './model';
 
 describe('lesson syntax', () => {
   it('parses the complete sample', () => {
@@ -21,5 +21,17 @@ describe('lesson syntax', () => {
     const value = `${sampleSyntax}\nnote: Café rhythm`;
     expect(decodeSyntax(encodeSyntax(value))).toBe(value);
     expect(decodeSyntax('not valid !!!')).toBeNull();
+  });
+
+  it('rejects text that cannot fit the printable card without changing it', () => {
+    const title = 'T'.repeat(printableLimits.title + 1);
+    const chord = 'C'.repeat(printableLimits.chord + 1);
+    const note = 'N'.repeat(printableLimits.note + 1);
+    const source = `title: ${title}\nchord: ${chord}\nfrets: x 3 2 0 1 0\nfingers: x 3 2 0 1 0\ncapo: 0\nnote: ${note}`;
+    const result = parseSyntax(source);
+    expect(result.errors.join(' ')).toContain('Line 1 title is too long');
+    expect(result.errors.join(' ')).toContain('Line 2 chord is too long');
+    expect(result.errors.join(' ')).toContain('Line 6 note is too long');
+    expect(result.card).toMatchObject({ title, chord, note });
   });
 });

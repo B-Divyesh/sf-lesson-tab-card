@@ -28,7 +28,7 @@ Fret values use `x`, `0`, or a number from 1 to 12. Finger values use `x` or a n
 
 ## Privacy and offline use
 
-The real editor stores one draft in browser local storage. Lesson text and exports do not leave the browser. A share link contains the lesson text in its address. The app works offline after the first visit.
+The real editor stores one draft in browser local storage. During ordinary editing, lesson text and exports do not leave the browser in HTTP requests. New share links keep lesson text after the `#` sign, so browsers do not send it to the site or as a referrer. Older `?c=` links should be opened only to copy a new link. The app works offline after the first visit.
 
 License verification is the only optional cross-origin request. It sends the license token to the Sociobot billing API. It does not send lesson text.
 

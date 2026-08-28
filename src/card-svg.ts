@@ -32,7 +32,7 @@ export function cardSvg(card: Card): string {
     <rect width="900" height="540" fill="#171713"/>
     <path d="M20 12H868L888 32V528H20Z" fill="#fffdf6" stroke="#171713" stroke-width="4"/>
     <rect x="20" y="12" width="14" height="516" fill="#ffd84a"/>
-    <style>.eyebrow{font:700 18px Arial,sans-serif;letter-spacing:2px}.title{font:900 42px Arial,sans-serif}.chord{font:900 68px Arial,sans-serif}.meta{font:700 17px Arial,sans-serif}.tab{font:600 20px Consolas,monospace}.note{font:600 19px Consolas,monospace}.rule{stroke:#171713;stroke-width:3}</style>
+    <style>.eyebrow{font:700 18px Arial,sans-serif;letter-spacing:2px}.title{font:900 ${card.title.length > 18 ? 28 : 42}px Arial,sans-serif}.chord{font:900 ${card.chord.length > 4 ? 44 : 68}px Arial,sans-serif}.meta{font:700 17px Arial,sans-serif}.tab{font:600 20px Consolas,monospace}.note{font:600 19px Consolas,monospace}.rule{stroke:#171713;stroke-width:3}</style>
     <text x="70" y="72" class="eyebrow">LESSON TAB CARD</text>
     <text x="70" y="125" class="title">${escapeXml(card.title)}</text>
     <line x1="70" y1="145" x2="840" y2="145" class="rule"/>

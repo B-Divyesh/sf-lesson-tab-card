@@ -34,7 +34,7 @@ Audited 2026-08-28. Counts treat contractions and hyphenated terms as one word. 
 | Original image made for this product. | 6 | — |
 | There is no song library, playback, account, or tracking. | 9 | — |
 | Lesson Tab Card stores one draft in your browser. | 9 | — |
-| Share links carry the lesson text inside the link. | 9 | — |
+| New share links keep lesson text after the # sign. | 10 | — |
 | The free editor and single-card exports do not change. | 9 | — |
 | The worksheet pack adds a four-card SVG page for lesson folders. | 11 | — |
 | One-time purchase. | 2 | — |
@@ -52,7 +52,7 @@ Audited 2026-08-28. Counts treat contractions and hyphenated terms as one word. 
 
 ## Error and action feedback templates
 
-All templates are under 22 words per sentence. They name the failed item and the next action. Checked templates include invalid line, capo, fret, finger, tab length, export, share-link, PNG drawing, and license verification errors. No template contains a banned word.
+All templates are under 22 words per sentence. They name the failed item and the next action. Checked templates include invalid line, printable text length, capo, fret, finger, tab length, export, share-link, PNG drawing, and license verification errors. No template contains a banned word.
 
 ## Action labels
 

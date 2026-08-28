@@ -10,6 +10,15 @@ export type Card = {
 
 export type ParseResult = { card: Card | null; errors: string[] };
 
+// These limits match the printable area in the 900 × 540 export. They are
+// validation limits, never truncation limits: changing a lesson silently is
+// worse than asking the teacher to shorten a line.
+export const printableLimits = {
+  title: 26,
+  chord: 7,
+  note: 64,
+} as const;
+
 export const sampleSyntax = `title: G to C change
 chord: G
 frets: 3 2 0 0 0 3
@@ -56,8 +65,14 @@ export function parseSyntax(source: string): ParseResult {
     const [, rawKey, rawValue] = match;
     const key = rawKey.toLowerCase();
     const value = rawValue.trim();
-    if (key === 'title') card.title = value.slice(0, 60);
-    else if (key === 'chord') card.chord = value.slice(0, 16);
+    if (key === 'title') {
+      card.title = value;
+      if (value.length > printableLimits.title) errors.push(`Line ${number} title is too long. Use ${printableLimits.title} characters or fewer so it prints on the card.`);
+    }
+    else if (key === 'chord') {
+      card.chord = value;
+      if (value.length > printableLimits.chord) errors.push(`Line ${number} chord is too long. Use ${printableLimits.chord} characters or fewer so it stays clear beside the capo.`);
+    }
     else if (key === 'frets') card.frets = value.split(/\s+/).filter(Boolean);
     else if (key === 'fingers') card.fingers = value.split(/\s+/).filter(Boolean);
     else if (key === 'capo') {
@@ -67,7 +82,10 @@ export function parseSyntax(source: string): ParseResult {
     } else if (key === 'tab') {
       if (value) errors.push(`Line ${number} starts the tab. Put each string on the next line.`);
       readingTab = true;
-    } else if (key === 'note') card.note = value.slice(0, 140);
+    } else if (key === 'note') {
+      card.note = value;
+      if (value.length > printableLimits.note) errors.push(`Line ${number} note is too long. Use ${printableLimits.note} characters or fewer so it prints on one line.`);
+    }
     else errors.push(`Line ${number} uses “${key}:”. Use title:, chord:, frets:, fingers:, capo:, tab:, or note:.`);
   });
 

@@ -8,10 +8,10 @@
   },
   {
     "id": "browser-private",
-    "claim": "Lesson text and exports do not leave the browser",
+    "claim": "Demo use and new share links keep lesson text out of HTTP requests",
     "where": "privacy section, privacy page, and README",
     "test": "npm run test:e2e -- --grep @claim:browser-private",
-    "sandbox": "fresh browser context on /demo; capture every request during edit and reset; assert same-origin only"
+    "sandbox": "fresh browser context; create a fragment share link from /demo, open it, and assert lesson text is absent from all request URLs and referrers"
   },
   {
     "id": "demo-isolation",
@@ -47,5 +47,19 @@
     "where": "paid tier and terms",
     "test": "npm run test:e2e -- --grep @claim:worksheet-pack",
     "sandbox": "use the sample-only worksheet preview in /demo; assert four card titles in the SVG"
+  },
+  {
+    "id": "paid-license-flow",
+    "claim": "A returned valid license activates the worksheet pack on this browser",
+    "where": "worksheet pack and terms",
+    "test": "npm run test:e2e -- --grep @claim:paid-license-flow",
+    "sandbox": "fresh browser context; intercept the documented billing verification response for a returned license and assert stored token, stripped URL, and worksheet activation"
+  },
+  {
+    "id": "paid-checkout",
+    "claim": "The advertised $9 worksheet pack opens the hosted checkout",
+    "where": "worksheet pack and terms",
+    "test": "npm run test:e2e -- --grep @claim:paid-checkout",
+    "sandbox": "request the production billing checkout endpoint without following redirects; assert its 303 redirect targets a Dodo hosted checkout session"
   }
 ]

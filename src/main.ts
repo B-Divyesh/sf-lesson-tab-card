@@ -66,7 +66,14 @@ function renderEditorPage(url: URL) {
   sharedError = '';
   if (isDemo) source = sampleSyntax;
   else {
-    const encoded = url.searchParams.get('c');
+    const fragmentEncoded = new URLSearchParams(url.hash.startsWith('#') ? url.hash.slice(1) : '').get('c');
+    const legacyEncoded = url.searchParams.get('c');
+    if (legacyEncoded) {
+      url.searchParams.delete('c');
+      history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+      sharedError = 'This older share link put lesson text in the request address. Copy a new private link before sharing.';
+    }
+    const encoded = fragmentEncoded ?? legacyEncoded;
     if (encoded) {
       const decoded = decodeSyntax(encoded);
       if (decoded === null) sharedError = 'This share link is damaged or too long. Start a new card below.';
@@ -106,7 +113,7 @@ function renderEditorPage(url: URL) {
       </section>
       <section class="limits" aria-labelledby="limits-heading">
         <div><p class="section-label">KEEPS OUT OF THE WAY</p><h2 id="limits-heading">A handout, not a score editor</h2></div>
-        <p>There is no song library, playback, account, or tracking. Lesson Tab Card stores one draft in your browser. Share links carry the lesson text inside the link.</p>
+    <p>There is no song library, playback, account, or tracking. Lesson Tab Card stores one draft in your browser. New share links keep lesson text after the # sign.</p>
       </section>
       ${paidSection()}
     </main>${footer()}${liveRegions()}`;
@@ -210,7 +217,10 @@ function updatePreview() {
     validity.className = 'validity';
     return;
   }
-  preview.innerHTML = cardSvg(result.card);
+  const printableErrors = result.errors.some((error) => error.includes('is too long'));
+  preview.innerHTML = printableErrors
+    ? '<div class="preview-error"><b>Shorten the named line before previewing.</b><span>The export stays blocked until every line fits the card.</span></div>'
+    : cardSvg(result.card);
   if (result.errors.length) {
     errors.innerHTML = `<p><b>${result.errors.length} ${result.errors.length === 1 ? 'fix' : 'fixes'} needed:</b></p><ul>${result.errors.map((error) => `<li>${escapeHtml(error)}</li>`).join('')}</ul>`;
     validity.textContent = 'CHECK';
@@ -244,10 +254,10 @@ async function copyShareLink() {
     announce('The link was not copied. Fix the named lesson lines first.');
     return;
   }
-  const url = `${location.origin}/?c=${encodeSyntax(source)}`;
+  const url = `${location.origin}/#c=${encodeSyntax(source)}`;
   try {
     await navigator.clipboard.writeText(url);
-    announce('Share link copied. It contains this lesson text.');
+    announce('Private share link copied. Its lesson text stays after the # sign.');
   } catch {
     const input = document.createElement('input');
     input.value = url;
@@ -255,7 +265,7 @@ async function copyShareLink() {
     input.select();
     document.execCommand('copy');
     input.remove();
-    announce('Share link copied. It contains this lesson text.');
+    announce('Private share link copied. Its lesson text stays after the # sign.');
   }
 }
 
@@ -292,8 +302,9 @@ function renderPolicy(kind: 'privacy' | 'terms') {
   const privacy = kind === 'privacy';
   app.innerHTML = `${header()}<main id="main" class="text-page"><p class="kicker">PLAIN-LANGUAGE POLICY</p><h1 tabindex="-1">${privacy ? 'Your lesson stays on your device' : 'Terms for using Lesson Tab Card'}</h1>
     ${privacy ? `<p class="lede">Lesson Tab Card has no account system and no analytics.</p>
-      <h2>What the browser stores</h2><p>The editor stores your current lesson text in local storage. A share link contains the same text in its address. Demo mode keeps its sample in memory and does not read or write your saved lesson.</p>
-      <h2>What leaves the browser</h2><p>Lesson text and exports do not leave your browser. If you buy or verify a worksheet license, your browser contacts the Sociobot billing API. We do not send your lesson text with that request.</p>
+      <h2>What the browser stores</h2><p>The editor stores your current lesson text in local storage. New share links keep the same text after the # sign. Demo mode keeps its sample in memory and does not read or write your saved lesson.</p>
+      <h2>What leaves the browser</h2><p>New share-link lesson text and exports do not leave your browser in HTTP requests. If you buy or verify a worksheet license, your browser contacts the Sociobot billing API. We do not send your lesson text with that request.</p>
+      <h2>Older share links</h2><p>Older links that use ?c= put lesson text in the request address. Open one only to copy a new link, then remove the old link.</p>
       <h2>How to remove data</h2><p>Use “Clear card” to remove the saved lesson. Clear this site’s browser storage to remove a license token and its last verification result.</p>
       <h2>Questions</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a>.</p>` : `<p class="lede">Use the editor for your own lesson material and original exercises.</p>
       <h2>Free editor</h2><p>You may create, export, print, and share lesson cards. Do not use the product to distribute material you do not have permission to share.</p>

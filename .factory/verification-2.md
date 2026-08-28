@@ -5,7 +5,7 @@ Verified on 2026-08-28 for work order `lesson-tab-card-verify-2`.
 - Candidate commit: `45fd91d6bd94ed21430f99f2308f766a837fef98`
 - Live URL: https://lesson-tab-card.sociobot.in
 - Artifact: static Vite/TypeScript PWA
-- Verdict: **FAIL — do not release until the invalid-input console errors are removed.**
+- Verdict: **FAIL — do not release until the blockers below are removed.**
 
 The previously reported deployment-only failures are repaired in the live product: checkout returns a Dodo session, private share links use a fragment, printable length is validated, blank-state contrast passes, touch targets meet 44px, and unknown routes return HTTP 404. This verification found one new defect while exercising a representative invalid user-input recovery path.
 

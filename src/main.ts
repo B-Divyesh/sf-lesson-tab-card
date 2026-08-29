@@ -41,6 +41,10 @@ function boot() {
   });
   document.addEventListener('click', handleRouteClick);
   document.addEventListener('keydown', editorShortcuts);
+  addEventListener('online', () => {
+    const url = new URL(location.href);
+    if (url.pathname === '/' && !demoUrl(url)) checkStoredLicense(false);
+  });
   if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => undefined));
 }
 
@@ -152,14 +156,27 @@ function renderEditorPage(url: URL) {
   bindEditor();
   bindPaid();
   updatePreview();
-  if (!isDemo) void verifyStoredLicense().then((valid) => {
-    if (!valid && hasStoredLicense()) licenseNotice = 'The saved license is no longer active. You can check the token or buy the pack again.';
-    if (valid !== paid) { paid = valid; renderEditorPage(new URL(location.href)); }
+  const checkingReturnedLicense = returnedLicense;
+  returnedLicense = false;
+  if (checkingReturnedLicense) announce('License received. Checking the worksheet pack now.');
+  if (!isDemo) checkStoredLicense(checkingReturnedLicense);
+}
+
+function checkStoredLicense(checkingReturnedLicense: boolean) {
+  void verifyStoredLicense().then((valid) => {
+    const nextNotice = !valid && hasStoredLicense()
+      ? 'The saved license is no longer active. You can check the token or buy the pack again.'
+      : '';
+    const stateChanged = valid !== paid || nextNotice !== licenseNotice;
+    paid = valid;
+    licenseNotice = nextNotice;
+    if (stateChanged) renderEditorPage(new URL(location.href));
+    if (checkingReturnedLicense) {
+      announce(valid
+        ? 'License verified. The worksheet pack is active.'
+        : 'License check finished. The saved license is not active.');
+    }
   });
-  if (returnedLicense) {
-    returnedLicense = false;
-    announce('License received. Checking the worksheet pack now.');
-  }
 }
 
 function editorSection() {
@@ -243,10 +260,17 @@ function updatePreview() {
   if (!preview || !errors || !validity) return;
   const result = parseSyntax(source);
   if (!result.card) {
-    preview.innerHTML = `<div class="empty-preview"><b>Your card will appear here.</b><span>Type a title, chord, and six fret values to make it.</span></div>`;
-    errors.innerHTML = '<p>No lesson yet. Start with a title: line.</p>';
-    validity.textContent = 'EMPTY';
-    validity.className = 'validity';
+    if (result.errors.length) {
+      preview.innerHTML = '<div class="preview-error"><b>Shorten the lesson before previewing.</b><span>The export stays blocked until the lesson fits.</span></div>';
+      errors.innerHTML = `<p><b>${result.errors.length} fix needed:</b></p><ul>${result.errors.map((error) => `<li>${escapeHtml(error)}</li>`).join('')}</ul>`;
+      validity.textContent = 'CHECK';
+      validity.className = 'validity bad';
+    } else {
+      preview.innerHTML = `<div class="empty-preview"><b>Your card will appear here.</b><span>Type a title, chord, and six fret values to make it.</span></div>`;
+      errors.innerHTML = '<p>No lesson yet. Start with a title: line.</p>';
+      validity.textContent = 'EMPTY';
+      validity.className = 'validity';
+    }
     return;
   }
   const printableErrors = result.errors.some((error) => error.includes('is too long'));
@@ -308,7 +332,7 @@ function paidSection() {
       ${licenseNotice ? `<p class="message error">${licenseNotice}</p>` : ''}
       ${isDemo ? `<p class="license-state success">Sample worksheet preview is open in this demo.</p><button class="button primary" id="export-worksheet">Export sample 4-card worksheet</button><p class="fine-print">Leave the demo before buying or verifying a license.</p>` : `${paid ? `<p class="license-state success">Worksheet pack active on this browser.</p><button class="button primary" id="export-worksheet">Export 4-card worksheet</button>` : `<a class="button primary" href="${checkoutUrl}">Buy worksheet pack — $9</a>`}
       <details><summary>Have a license? Paste it</summary><label for="license-token">License token</label><input id="license-token" autocomplete="off" /><button class="button" id="restore-license" type="button" aria-label="Verify license">Verify license</button><p id="license-message" aria-live="polite"></p></details>
-      <p class="fine-print">One-time purchase. Checkout opens through Sociobot and Dodo. See <a href="/terms" data-route>terms</a>.</p>`}
+      <p class="fine-print">One-time purchase. After one successful check, the pack stays active offline until billing confirms the license is inactive. Checkout opens through Sociobot and Dodo. See <a href="/terms" data-route>terms</a>.</p>`}
     </div>
   </section>`;
 }
@@ -325,7 +349,7 @@ function bindPaid() {
     if (!input || !message) return;
     message.textContent = 'Checking this license…';
     const valid = await restoreLicense(input.value);
-    if (valid) { paid = true; renderEditorPage(new URL(location.href)); announce('License verified. The worksheet pack is active.'); }
+    if (valid) { paid = true; licenseNotice = ''; renderEditorPage(new URL(location.href)); announce('License verified. The worksheet pack is active.'); }
     else message.textContent = 'This license could not be verified. Check the token and try again online.';
   });
 }
@@ -340,7 +364,7 @@ function renderPolicy(kind: 'privacy' | 'terms') {
       <h2>How to remove data</h2><p>Use “Clear card” to remove the saved lesson. Clear this site’s browser storage to remove a license token and its last verification result.</p>
       <h2>Questions</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a>.</p>` : `<p class="lede">Use the editor for your own lesson material and original exercises.</p>
       <h2>Free editor</h2><p>You may create, export, print, and share lesson cards. Do not use the product to distribute material you do not have permission to share.</p>
-      <h2>Worksheet license</h2><p>The worksheet pack costs $9 as a one-time purchase. A valid returned or pasted license activates the worksheet pack in this browser. SVG and PNG card exports remain free.</p>
+      <h2>Worksheet license</h2><p>The worksheet pack costs $9 as a one-time purchase. A valid returned or pasted license activates the worksheet pack in this browser. A previously verified license stays active offline while its next check waits for a connection. SVG and PNG card exports remain free.</p>
       <h2>Checkout</h2><p>Checkout opens through Sociobot and Dodo. Email support for purchase questions.</p>
       <h2>No warranty</h2><p>The software is provided under the MIT License without warranty. Check fret numbers and teaching notes before sharing a card.</p>
       <h2>Questions</h2><p>Email <a href="mailto:support@sociobot.in">support@sociobot.in</a>.</p>`}
@@ -356,7 +380,7 @@ function header() {
 }
 
 function footer() {
-  return `<footer><p><b>Lesson Tab Card</b> — Make a clear guitar lesson card.</p><nav aria-label="Footer navigation"><a href="/privacy" data-route>Privacy</a><a href="/terms" data-route>Terms</a><a href="https://sociobot.in">Built by Param Factory <span class="sr-only">(external site)</span></a></nav><p>v1.1 / build 2026.08.29</p></footer>`;
+  return `<footer><p><b>Lesson Tab Card</b> — Make a clear guitar lesson card.</p><nav aria-label="Footer navigation"><a href="/privacy" data-route>Privacy</a><a href="/terms" data-route>Terms</a><a href="https://sociobot.in">Built by Param Factory <span class="sr-only">(external site)</span></a></nav><p>v1.2 / build 2026.08.29</p></footer>`;
 }
 
 function demoBanner() {

@@ -18,12 +18,7 @@ export function captureReturnedLicense(): boolean {
 
 export function cachedLicenseIsValid(): boolean {
   if (!localStorage.getItem(licenseKey)) return false;
-  try {
-    const verdict = JSON.parse(localStorage.getItem(verdictKey) ?? '') as Verdict;
-    return verdict.valid && Date.now() - verdict.checkedAt < 86_400_000;
-  } catch {
-    return false;
-  }
+  return readVerdict()?.valid === true;
 }
 
 export function hasStoredLicense(): boolean {
@@ -55,6 +50,8 @@ async function verifyToken(token: string): Promise<boolean> {
     localStorage.setItem(verdictKey, JSON.stringify(verdict));
     return verdict.valid;
   } catch {
+    // A failed background check is not a revocation. Preserve the last
+    // definitive valid verdict so a one-time purchase keeps working offline.
     return cachedLicenseIsValid();
   }
 }

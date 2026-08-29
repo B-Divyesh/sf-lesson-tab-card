@@ -16,6 +16,10 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | Type a title, chord, and six fret values to make it. | 11 | Empty-state action |
 | No lesson yet. | 3 | Empty state |
 | Start with a title line. | 5 | Empty-state action |
+| Shorten the lesson before previewing. | 5 | `source-length-boundary` |
+| The export stays blocked until the lesson fits. | 8 | `source-length-boundary` |
+| The card is over 4,000 characters. | 7 | `source-length-boundary` |
+| Shorten it and try again. | 6 | `source-length-boundary` |
 | Ready to export and share. | 5 | Valid state |
 | Shorten the named line before previewing. | 6 | Error action |
 | The export stays blocked until every line fits the card. | 10 | `syntax-validation` |
@@ -35,7 +39,12 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | Sample worksheet preview is open in this demo. | 8 | Demo state |
 | Leave the demo before buying or verifying a license. | 9 | Demo boundary |
 | Worksheet pack active on this browser. | 6 | `paid-license-flow`, `license-restore` |
+| The saved license is no longer active. | 7 | `rejected-returned-license` |
+| You can check the token or buy the pack again. | 10 | `rejected-returned-license` |
+| License check finished. | 3 | `rejected-returned-license` |
+| The saved license is not active. | 7 | `rejected-returned-license` |
 | One-time purchase. | 2 | Purchase term |
+| After one successful check, the pack stays active offline until billing confirms the license is inactive. | 15 | `paid-license-offline-recovery` |
 | Checkout opens through Sociobot and Dodo. | 6 | `paid-checkout` |
 | See terms. | 2 | Legal link |
 | Edit the sample lesson card. | 5 | Demo job |
@@ -66,6 +75,7 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | Do not use the product to distribute material you do not have permission to share. | 14 | Usage limit |
 | The worksheet pack costs $9 as a one-time purchase. | 9 | `paid-checkout` |
 | A valid returned or pasted license activates the worksheet pack in this browser. | 12 | `paid-license-flow`, `license-restore` |
+| A previously verified license stays active offline while its next check waits for a connection. | 14 | `paid-license-offline-recovery` |
 | SVG and PNG card exports remain free. | 7 | `license-free-card-exports` |
 | Checkout opens through Sociobot and Dodo. | 6 | `paid-checkout` |
 | Email support for purchase questions. | 5 | Support action |
@@ -97,6 +107,7 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | The free editor exports one lesson card as SVG or PNG. | 11 | `license-free-card-exports` |
 | A $9 one-time license adds a four-card worksheet SVG. | 9 | `worksheet-pack`, `paid-checkout` |
 | A returned or pasted valid license activates the worksheet pack in this browser. | 12 | `paid-license-flow`, `license-restore` |
+| A previously verified license stays active offline while its next check waits for a connection. | 14 | `paid-license-offline-recovery` |
 | Requires Node.js 20 or newer. | 5 | Development prerequisite |
 | npm test runs unit parsing tests and Playwright claim checks. | 9 | Development instruction |
 | The exact production command is npm run build. | 8 | Build instruction |

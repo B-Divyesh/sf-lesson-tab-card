@@ -126,6 +126,27 @@
     "sandbox": "fresh browser context; intercept the billing verification response for a returned license and assert stored token, stripped URL, and worksheet activation"
   },
   {
+    "id": "paid-license-offline-recovery",
+    "claim": "A previously verified worksheet license stays active when its daily check is due and the browser is offline",
+    "where": "worksheet pack, terms, and README",
+    "test": "npm run test:e2e -- --grep @claim:paid-license-offline-recovery",
+    "sandbox": "fresh browser context with a 25-hour-old valid verdict; start offline and assert the worksheet stays active, then reconnect and assert one successful background refresh"
+  },
+  {
+    "id": "rejected-returned-license",
+    "claim": "A rejected returned license shows that it is inactive and offers token-check and purchase recovery",
+    "where": "worksheet pack",
+    "test": "npm run test:e2e -- --grep @claim:rejected-returned-license",
+    "sandbox": "fresh browser context; intercept an invalid response for a returned license and assert the stripped URL, stored verdict, completion announcement, inactive notice, and recovery actions"
+  },
+  {
+    "id": "source-length-boundary",
+    "claim": "A card over 4,000 characters names the length limit and tells the user to shorten it",
+    "where": "editor validation",
+    "test": "npm run test:e2e -- --grep @claim:source-length-boundary",
+    "sandbox": "fresh browser context; enter exactly 4,000 and then 4,001 characters and assert the length error appears only over the boundary"
+  },
+  {
     "id": "license-restore",
     "claim": "A pasted valid license activates the worksheet pack in this browser",
     "where": "worksheet pack, terms, and README",

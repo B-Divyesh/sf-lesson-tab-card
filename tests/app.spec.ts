@@ -370,6 +370,82 @@ test('captures a returned license and activates the worksheet pack @claim:paid-l
   expect(await page.evaluate(() => localStorage.getItem('sb_license:lesson-tab-card'))).toBe('paid-token');
 });
 
+test('keeps a stale cached valid worksheet license active while offline, then refreshes it after reconnecting @claim:paid-license-offline-recovery', async ({ page, context }) => {
+  let online = false;
+  let verificationRequests = 0;
+  await page.route('https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=cached-paid-token', async (route) => {
+    if (!online) return route.abort('internetdisconnected');
+    verificationRequests += 1;
+    await route.fulfill({ contentType: 'application/json', body: JSON.stringify({ valid: true, reason: 'ok', expires_at: null }) });
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem('sb_license:lesson-tab-card', 'cached-paid-token');
+    localStorage.setItem('sb_license_verdict:lesson-tab-card', JSON.stringify({ valid: true, checkedAt: Date.now() - 25 * 60 * 60 * 1000 }));
+  });
+
+  await page.goto('/demo');
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+  await context.setOffline(true);
+  await page.goto('/');
+  await expect(page.getByText('Worksheet pack active on this browser.')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Export 4-card worksheet' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Buy worksheet pack — $9' })).toHaveCount(0);
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('sb_license_verdict:lesson-tab-card') ?? '{}').valid)).toBe(true);
+
+  online = true;
+  await context.setOffline(false);
+  await expect.poll(() => verificationRequests).toBe(1);
+  await expect(page.getByText('Worksheet pack active on this browser.')).toBeVisible();
+  const refreshedAt = await page.evaluate(() => JSON.parse(localStorage.getItem('sb_license_verdict:lesson-tab-card') ?? '{}').checkedAt);
+  expect(Date.now() - refreshedAt).toBeLessThan(60_000);
+});
+
+test('shows recovery feedback when a returned license is rejected @claim:rejected-returned-license', async ({ page }) => {
+  await page.route('https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=rejected-return-token', async (route) => {
+    await route.fulfill({ contentType: 'application/json', body: JSON.stringify({ valid: false, reason: 'invalid', expires_at: null }) });
+  });
+  await page.goto('/?license=rejected-return-token');
+  await expect(page).toHaveURL('/');
+  await expect(page.getByText('The saved license is no longer active. You can check the token or buy the pack again.')).toBeVisible();
+  await expect(page.getByText('License check finished. The saved license is not active.')).toBeAttached();
+  await expect(page.getByRole('link', { name: 'Buy worksheet pack — $9' })).toBeVisible();
+  await expect(page.getByText('Have a license? Paste it')).toBeVisible();
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('sb_license_verdict:lesson-tab-card') ?? '{}').valid)).toBe(false);
+});
+
+test('revokes an optimistically active stale license only after a definitive invalid response @regression:stale-license-revocation', async ({ page }) => {
+  let releaseResponse!: () => void;
+  const responseGate = new Promise<void>((resolve) => { releaseResponse = resolve; });
+  await page.route('https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=revoked-paid-token', async (route) => {
+    await responseGate;
+    await route.fulfill({ contentType: 'application/json', body: JSON.stringify({ valid: false, reason: 'revoked', expires_at: null }) });
+  });
+  await page.addInitScript(() => {
+    localStorage.setItem('sb_license:lesson-tab-card', 'revoked-paid-token');
+    localStorage.setItem('sb_license_verdict:lesson-tab-card', JSON.stringify({ valid: true, checkedAt: Date.now() - 25 * 60 * 60 * 1000 }));
+  });
+
+  await page.goto('/');
+  await expect(page.getByText('Worksheet pack active on this browser.')).toBeVisible();
+  releaseResponse();
+  await expect(page.getByText('The saved license is no longer active. You can check the token or buy the pack again.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Buy worksheet pack — $9' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Export 4-card worksheet' })).toHaveCount(0);
+});
+
+test('shows the exact source-length recovery at 4,001 characters @claim:source-length-boundary', async ({ page }) => {
+  await page.goto('/');
+  const input = page.getByLabel('Lesson syntax');
+  const prefix = 'title: A\n';
+  await input.fill(prefix + 'x'.repeat(4_000 - prefix.length));
+  await expect(page.getByText('The card is over 4,000 characters. Shorten it and try again.')).toHaveCount(0);
+  await input.fill(prefix + 'x'.repeat(4_001 - prefix.length));
+  await expect(page.getByText('The card is over 4,000 characters. Shorten it and try again.')).toBeVisible();
+  await expect(page.getByText('No lesson yet. Start with a title: line.')).toHaveCount(0);
+  await expect(page.getByText('Shorten the lesson before previewing.')).toBeVisible();
+});
+
 test('activates the worksheet pack from a pasted valid license @claim:license-restore', async ({ page }) => {
   await page.route('https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=restored-token', async (route) => {
     await route.fulfill({ contentType: 'application/json', body: JSON.stringify({ valid: true, reason: 'ok', expires_at: null }) });

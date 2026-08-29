@@ -1,4 +1,4 @@
-const CACHE = 'lesson-tab-card-v4';
+const CACHE = 'lesson-tab-card-v5';
 const CORE = ['/favicon.svg', '/apple-touch-icon.png', '/assets/lesson-desk.webp'];
 
 self.addEventListener('install', (event) => {

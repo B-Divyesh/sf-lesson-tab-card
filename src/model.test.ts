@@ -34,4 +34,16 @@ describe('lesson syntax', () => {
     expect(result.errors.join(' ')).toContain('Line 6 note is too long');
     expect(result.card).toMatchObject({ title, chord, note });
   });
+
+  it('accepts 4,000 source characters and rejects 4,001 with the recovery message', () => {
+    const prefix = 'title: A\n';
+    const atLimit = prefix + ' '.repeat(4_000 - prefix.length);
+    const overLimit = `${atLimit} `;
+    expect(parseSyntax(atLimit).card).not.toBeNull();
+    expect(parseSyntax(atLimit).errors).not.toContain('The card is over 4,000 characters. Shorten it and try again.');
+    expect(parseSyntax(overLimit)).toEqual({
+      card: null,
+      errors: ['The card is over 4,000 characters. Shorten it and try again.'],
+    });
+  });
 });

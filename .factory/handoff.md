@@ -2,7 +2,7 @@
 
 ## Result
 
-The recorded review findings are addressed. This handoff records local and clean-clone evidence for the static-web release candidate; the final live confirmation is added after the deployment check.
+The recorded review findings are addressed. Local, clean-clone, and cold-live checks passed for the static-web release.
 
 ## Delivered work
 
@@ -24,6 +24,10 @@ Clean clone: `/tmp/lesson-tab-card-polish-clean.myX2QM`, commit `740b1bca80f9a2f
 - `git diff --check` — passed.
 - The browser accessibility suite checks blank, demo, privacy, terms, and 404 pages with Axe; serious and critical counts are zero. It also checks keyboard navigation, focus movement, 390 px layout, reduced motion, offline reload, request behavior, and demo storage separation.
 - Local 390 px static-404 review: `.factory/qa-evidence/polish-2-404-local.png`. It confirmed one h1, one main landmark, canonical `https://lesson-tab-card.sociobot.in/404.html`, Open Graph and Twitter metadata, and the shared footer label.
+- Factory deployment `bf102dcc-9713-4d03-ab65-d24df6b80bc3` completed successfully. A cold 390 × 844 live browser check used `https://lesson-tab-card.sociobot.in` and recorded `.factory/qa-evidence/polish-2-live-demo.png` and `.factory/qa-evidence/polish-2-live-404.png`.
+- The live landing returned 200; the demo preview began at y=563.59 px, showed its banner/reset/exit controls, and retained seeded real draft/license/verdict storage while removing a demo `license` parameter.
+- Live `/404.html` returned its static document with canonical, Open Graph, and Twitter metadata, one h1, one main landmark, and `v1.2 / build 2026.08.29`. Live `/definitely-not-a-real-route` returned HTTP 404 with the same canonical metadata. `/privacy` and `/terms` returned 200 with one h1 and one main each.
+- Cold live Axe serious/critical counts were zero on demo and 404. No page execution errors occurred; the browser reports the expected 404 document response for the intentionally missing URL.
 - Production build size: JavaScript 27.80 kB raw / 10.04 kB gzip; CSS 11.93 kB raw / 3.39 kB gzip; locally hosted lesson image 69,632 bytes.
 
 ## Documents
@@ -33,4 +37,4 @@ Clean clone: `/tmp/lesson-tab-card-polish-clean.myX2QM`, commit `740b1bca80f9a2f
 
 ## Known gaps and next steps
 
-No known product gap. The next step is the required live cold-load confirmation after the release deployment completes.
+No known product gap or follow-up action.

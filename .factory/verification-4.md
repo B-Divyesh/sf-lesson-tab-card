@@ -196,4 +196,3 @@ The earlier reported deployment-only concern is not present: live is deployed an
 | High | 2 | Blocks release: paid offline entitlement and rejected-license recovery |
 | Medium | 1 | Blocks acceptance: incorrect invalid-input recovery at the source-length boundary |
 | Low | 0 | None |
-

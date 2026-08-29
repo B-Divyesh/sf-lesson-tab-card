@@ -1,0 +1,14 @@
+{
+  "lighthouseVersion": "12.8.2",
+  "url": "https://lesson-tab-card.sociobot.in/demo",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "fcpMs": 903,
+  "lcpMs": 928,
+  "tbtMs": 57,
+  "cls": 0,
+  "speedIndexMs": 903,
+  "transferredBytes": 84847
+}

@@ -1,0 +1,22 @@
+{
+  "lighthouseVersion": "12.8.2",
+  "fetchTime": "2026-08-29T12:52:58.194Z",
+  "requestedUrl": "https://lesson-tab-card.sociobot.in/demo",
+  "finalUrl": "https://lesson-tab-card.sociobot.in/demo",
+  "runtimeError": null,
+  "categories": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "firstContentfulPaintMs": 903.869,
+    "largestContentfulPaintMs": 939.869,
+    "totalBlockingTimeMs": 11,
+    "cumulativeLayoutShift": 0,
+    "speedIndexMs": 903.869,
+    "totalByteWeight": 86184
+  },
+  "command": "npx --yes lighthouse@12.8.2 https://lesson-tab-card.sociobot.in/demo --output=json --chrome-flags=--headless\ --no-sandbox --only-categories=performance,accessibility,best-practices,seo --disable-full-page-screenshot --quiet"
+}

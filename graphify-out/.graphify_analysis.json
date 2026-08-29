@@ -173,13 +173,13 @@
   },
   "gods": [
     {
-      "id": "src_main_rendereditorpage",
-      "label": "renderEditorPage()",
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
       "degree": 14
     },
     {
-      "id": "tsconfig_compileroptions",
-      "label": "compilerOptions",
+      "id": "src_main_rendereditorpage",
+      "label": "renderEditorPage()",
       "degree": 14
     },
     {
@@ -193,11 +193,6 @@
       "degree": 10
     },
     {
-      "id": "src_main_announce",
-      "label": "announce()",
-      "degree": 9
-    },
-    {
       "id": "src_card_svg_cardsvg",
       "label": "cardSvg()",
       "degree": 9
@@ -208,39 +203,33 @@
       "degree": 9
     },
     {
+      "id": "src_main_announce",
+      "label": "announce()",
+      "degree": 9
+    },
+    {
       "id": "src_export_downloadsvg",
       "label": "downloadSvg()",
       "degree": 8
     },
     {
-      "id": "src_main_bindeditor",
-      "label": "bindEditor()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
-      "id": "src_main_exportcard",
-      "label": "exportCard()",
+      "id": "src_main_bindeditor",
+      "label": "bindEditor()",
       "degree": 7
     }
   ],
   "surprises": [
     {
-      "source": "copyShareLink()",
-      "target": "encodeSyntax()",
+      "source": "updatePreview()",
+      "target": "cardSvg()",
       "source_files": [
         "src/main.ts",
-        "src/model.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "copyShareLink()",
-      "target": "parseSyntax()",
-      "source_files": [
-        "src/main.ts",
-        "src/model.ts"
+        "src/card-svg.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
@@ -249,6 +238,17 @@
     {
       "source": "exportCard()",
       "target": "downloadPng()",
+      "source_files": [
+        "src/main.ts",
+        "src/export.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "bindPaid()",
+      "target": "downloadSvg()",
       "source_files": [
         "src/main.ts",
         "src/export.ts"
@@ -269,8 +269,8 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "exportCard()",
-      "target": "parseSyntax()",
+      "source": "renderEditorPage()",
+      "target": "decodeSyntax()",
       "source_files": [
         "src/main.ts",
         "src/model.ts"

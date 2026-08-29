@@ -123,4 +123,4 @@ All generated validation, export, share-link, image-drawing, and license message
 | Optional paid output | worksheet pack |
 | Purchase credential | license |
 
-Catalog description: “Make a clear guitar lesson card during the lesson.” It starts with a verb, uses nine words, and is 49 characters.
+Catalog description: “Make a clear guitar lesson card during the lesson.” It starts with a verb, uses nine words, and is 50 characters.

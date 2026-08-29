@@ -193,13 +193,13 @@
       "degree": 10
     },
     {
-      "id": "src_model_parsesyntax",
-      "label": "parseSyntax()",
+      "id": "src_card_svg_cardsvg",
+      "label": "cardSvg()",
       "degree": 9
     },
     {
-      "id": "src_card_svg_cardsvg",
-      "label": "cardSvg()",
+      "id": "src_model_parsesyntax",
+      "label": "parseSyntax()",
       "degree": 9
     },
     {
@@ -225,11 +225,22 @@
   ],
   "surprises": [
     {
-      "source": "boot()",
-      "target": "cachedLicenseIsValid()",
+      "source": "updatePreview()",
+      "target": "cardSvg()",
       "source_files": [
         "src/main.ts",
-        "src/license.ts"
+        "src/card-svg.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "exportCard()",
+      "target": "downloadPng()",
+      "source_files": [
+        "src/main.ts",
+        "src/export.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
@@ -237,10 +248,21 @@
     },
     {
       "source": "bindPaid()",
-      "target": "restoreLicense()",
+      "target": "downloadSvg()",
       "source_files": [
         "src/main.ts",
-        "src/license.ts"
+        "src/export.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "exportCard()",
+      "target": "downloadSvg()",
+      "source_files": [
+        "src/main.ts",
+        "src/export.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
@@ -249,28 +271,6 @@
     {
       "source": "renderEditorPage()",
       "target": "decodeSyntax()",
-      "source_files": [
-        "src/main.ts",
-        "src/model.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "copyShareLink()",
-      "target": "encodeSyntax()",
-      "source_files": [
-        "src/main.ts",
-        "src/model.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "copyShareLink()",
-      "target": "parseSyntax()",
       "source_files": [
         "src/main.ts",
         "src/model.ts"

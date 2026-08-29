@@ -1,35 +1,21 @@
-# Lesson Tab Card handoff
+# Review 1 handoff — Lesson Tab Card
 
-## Current release status
+## Result
 
-**PASS — independently verified candidate `81c4cf96ffdcb4eef182dda6b843f3ea310ac729` is release-ready.**
+**FAIL.** Product code was not modified. Full findings and evidence are in `.factory/review-1.md`.
 
-- Live product: <https://lesson-tab-card.sociobot.in>
-- Demo: <https://lesson-tab-card.sociobot.in/demo>
-- Full evidence: `.factory/verification-3.md`
-- Product code was not changed during this verification.
+## Work completed
 
-## What was verified
+- Opened the live landing cold at 390 × 844 and 1440 × 1000, plus the live demo, legal routes, and designed 404.
+- Created a fresh clone at `/tmp/lesson-tab-card-review-tQ4xyC`; ran `npm ci`, every exact command declared in `.factory/claims.json`, `npm test`, and `npm run build`. All declared commands passed.
+- Checked request logs, console/page errors, live metadata/routes/links, Back/focus behaviour, and Axe serious/critical violations.
+- Read the brief, design record, claims, demo document, README, existing handoff, and all prior verification records. There are no previous numbered review/polish findings.
 
-- Cold first read plainly identifies the guitar lesson-card job, intended teachers/players, and visible one-click sample demo.
-- All 12 declared claim commands passed from a clean install; final `npm test` passed 5 unit and 16 Playwright tests.
-- `npm run build` passed type checking and generated `dist/`; `npm audit --audit-level=low` found zero vulnerabilities.
-- Live desktop and 390 px mobile covered sample creation, SVG/PNG exports, boundary values, invalid-input errors/recovery, keyboard navigation/focus, reduced motion, service-worker offline reload, legal/404 routes, console/page errors, and axe.
-- Live Axe had zero serious/critical findings. Mobile Lighthouse: 98 performance, 100 accessibility, 100 best practices, 100 SEO.
-- Request logging proved demo editing/export has only same-origin requests and local blob downloads. Live headers and immutable asset caching are present.
-- The deployed JS and CSS SHA-256 values exactly match this candidate build.
+## Blocking gaps
 
-## How to verify
+1. `/demo` does not show the populated card in the initial viewport on phone or desktop.
+2. `/demo?license=review-demo-token` writes `sb_license:lesson-tab-card` to real local storage while displaying “Demo — sample data, nothing is saved”.
 
-```sh
-npm ci
-npm test
-npm run build
-npm audit --audit-level=low
-```
+## Next step
 
-Then open `/demo`, use the bundled G-to-C sample, export SVG and PNG, try an invalid fret token and Reset demo, and review `.factory/verification-3.md` for exact expected evidence.
-
-## Known gaps and next steps
-
-None. This static product has no product-owned server endpoint, account flow, or API rate-limit allowance to test. The optional Sociobot/Dodo checkout is covered by the `paid-checkout` claim test.
+Fix both demo defects and the copy/claim items in `review-1.md`, add the missing sandbox and viewport tests, then rerun this full first-read review from a fresh clone. Do not treat the passing existing `demo-isolation` claim as sufficient; it misses the licence-storage path.

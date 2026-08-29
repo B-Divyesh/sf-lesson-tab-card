@@ -1,68 +1,53 @@
-# Polish round 1 handoff — Lesson Tab Card
+# Verification 4 handoff — Lesson Tab Card
 
 ## Result
 
-**PASS.** Every finding in `.factory/review-1.md` is fixed, tested, pushed, deployed, and rechecked cold on the live site. No known product gaps remain.
+**FAIL — do not release candidate `1e6b9afedd3190e8b9a560633556856cd53d9f21`.**
 
-- Work order: `lesson-tab-card-polish-1`
-- Repair implementation: `f8e5665ce36e538e75893cb18b6ceb6a3be1a62b`
-- Deployment: `ccec5f81-0bac-46a3-8661-152904483e87`
+- Work order: `lesson-tab-card-verify-4`
+- Candidate: `1e6b9afedd3190e8b9a560633556856cd53d9f21`
 - Live site: <https://lesson-tab-card.sociobot.in>
-- Direct demo: <https://lesson-tab-card.sociobot.in/?demo=1>
+- Verified: 2026-08-29 UTC
+- Full evidence: [`.factory/verification-4.md`](verification-4.md)
+- Product code changed: none
 
-## What changed
+## Blocking defects
 
-- Moved the populated sample preview into the first demo viewport on phone and desktop while retaining the marked-up lesson-sheet visual system.
-- Made `/demo` and `/?demo=1` true storage sandboxes. Returned license parameters are discarded before any real key is read or written, and billing controls are unavailable in demo mode.
-- Rewrote headings, terminology, paid copy, image captions, footer text, demo exit text, and README statements to close every copy finding.
-- Expanded the claim contract to 21 one-to-one tagged tests, including live preview updates, all rendered card fields, numeric boundaries, legacy links, data removal, keyboard shortcuts, license restore, and billing-request privacy.
-- Added route-specific Open Graph and Twitter metadata, route focus announcements, consistent legal links, a clearer accessible 404 document, and a deployment-config regression test.
-- Fixed the sample card’s zero capo rendering, bumped the service-worker cache, and retained all earlier regressions for overflow, contrast, private fragment links, mobile targets, malformed SVG, checkout, and true HTTP 404 behavior.
-- Added the verb-first catalog description: “Make a clear guitar lesson card during the lesson.”
+1. **HIGH:** a cached valid worksheet license older than 24 hours is treated as locked when offline. The paid-unlock contract requires optimistic access from the last valid cached verdict while background verification runs.
+2. **HIGH:** a returned license that verifies invalid is stored and locked, but the page never renders the required inactive-license notice or completion feedback; the live region remains at “Checking.”
+3. **MEDIUM:** pasted syntax over 4,000 characters hides the parser's correct length error and falsely says “No lesson yet. Start with a title.”
 
-The finding-by-finding record is [`.factory/polish-1.md`](polish-1.md).
+## What passed
 
-## Clean-clone verification
+- Cold first-read and one-click sample demo on desktop and 390 px mobile.
+- Detached clean clone at the exact candidate: `npm ci`, all 21 individual claim commands, 6 unit tests, 24 browser tests, exact production build, and audit.
+- Normal, boundary, invalid, recovery, SVG/PNG, share-link, demo isolation, storage, checkout, and malicious-text exercises, except for the documented 4,001-character message defect.
+- Zero live Axe serious/critical findings, keyboard/focus checks, 44 px mobile targets, reduced motion, offline reload, service-worker update, link crawl, response headers, cache behavior, and request-log privacy.
+- Lighthouse mobile: 97 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.2 s and CLS 0.
+- Live route HTML, JS, CSS, and service worker match the candidate build byte-for-byte.
+- Sociobot verify endpoint enforced throttling: 32 successful requests followed by 429 with `Retry-After: 3` in the first burst.
 
-Clean clone: `/tmp/lesson-tab-card-polish-clean-v6K0Mo` at implementation commit `f8e5665ce36e538e75893cb18b6ceb6a3be1a62b`.
+## How to reproduce
 
-1. `npm ci` — passed; 60 packages installed; 0 vulnerabilities.
-2. Every exact command in `.factory/claims.json` — 21 of 21 passed independently.
-3. `CI=1 npm test` — 6 Vitest tests and 24 Playwright tests passed.
-4. `npm run build` — passed and produced `dist/` with root `index.html`.
-5. `npm audit --audit-level=low` — passed with 0 vulnerabilities.
-6. Production bundle — JS 26.92 KB raw / 9.80 KB gzip; CSS 11.93 KB raw / 3.39 KB gzip; no web fonts; 84 KiB live transfer.
-
-The browser suite covers SVG/PNG and worksheet downloads, private share restore, local draft save/remove, isolated demo storage, returned and pasted licenses, checkout, invalid and boundary syntax, offline reload, keyboard operation, route focus/history, metadata, 404 structure, mobile overflow/targets, console errors, and Axe scans.
-
-## Live verification
-
-- `/opt/fleet/lib/verify-url.sh` — HTTP 200, 899 ms network-idle, correct title/lang/h1/main/alt/button names, no console or page errors.
-- Routes — `/`, `/demo`, `/?demo=1`, `/privacy`, `/terms` returned 200; an unknown route returned the designed page with HTTP 404.
-- Demo isolation — `/demo?license=must-not-save` and `/?demo=1&license=discard-me` stripped the token without a write or billing request. Seeded real draft/license/verdict values remained byte-identical after edit, reset, and exit.
-- Demo first screen — sample title at y=624.35 px on 390×844 and y=579.38 px on 1440×1000. No horizontal overflow.
-- Accessibility — Axe 4.10.2 found 0 serious/critical issues on home, demo, privacy, terms, and 404. Every visible mobile control measured at least 44×44 px.
-- Privacy/offline — no unexpected cross-origin requests; offline reload restored the populated demo and privacy route.
-- Link crawl — all internal pages and Sociobot returned 200; checkout returned 303 to Dodo; mail links used valid `mailto:` URLs.
-- Lighthouse 13.0.1 mobile `/demo` — Performance 100, Accessibility 100, Best Practices 100, SEO 100; FCP 1.1 s, LCP 1.2 s, TBT 40 ms, CLS 0.
-- Deployment identity — live `main-BOFePCyv.js` matches local SHA-256 `29f7925c9805ff00f9c098e9b64514a8a0155ab95f8149ba495e49342a903408`.
-
-Evidence and live screenshots are in [`.factory/live-evidence`](live-evidence/summary.md) and [`.factory/polish-artifacts`](polish-artifacts/demo-mobile.png).
-
-## Run locally
+Clean gates:
 
 ```sh
 npm ci
-npm test
+node -e "for (const c of require('./.factory/claims.json')) console.log(c.test)"
+CI=1 npm test
 npm run build
+npm audit --audit-level=low
 ```
 
-Deploy `dist/` with:
+Paid offline defect: visit once, seed `sb_license:lesson-tab-card` and a valid verdict whose `checkedAt` is 25 hours old, switch offline, and reload. The worksheet export disappears and the buy link returns.
 
-```sh
-/opt/fleet/lib/deploy-static.sh lesson-tab-card dist
-```
+Rejected-token defect: open `/?license=<invalid-token>` online. Verification stores a false verdict and strips the URL, but no visible inactive notice appears.
 
-## Known gaps and next steps
+Length-boundary defect: paste `title: A` plus enough text to exceed 4,000 characters. The editor shows the empty-state instruction instead of the parser's length error.
 
-None for this work order. No source, claim, accessibility, privacy, offline, routing, mobile, or deployment finding remains open.
+## Next steps
+
+- Preserve last-known valid paid access optimistically while offline or awaiting the daily verification.
+- Always render and announce definitive license verification failure, even when `paid` was already false.
+- Surface parser errors when `card` is null and add 4,000/4,001 boundary coverage.
+- Add regression/claim tests for stale-valid offline entitlement and invalid returned-license recovery, then rerun this verification.

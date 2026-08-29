@@ -1,21 +1,24 @@
 {
   "communities": {
     "0": [
+      "src_license",
+      "src_license_cachedlicenseisvalid",
       "src_license_capturereturnedlicense",
+      "src_license_checkouturl",
       "src_license_hasstoredlicense",
+      "src_license_readverdict",
+      "src_license_restorelicense",
+      "src_license_verdict",
+      "src_license_verifystoredlicense",
+      "src_license_verifytoken",
       "src_main",
-      "src_main_announce",
       "src_main_app",
-      "src_main_bindeditor",
       "src_main_boot",
       "src_main_checkstoredlicense",
-      "src_main_copysharelink",
       "src_main_demobanner",
       "src_main_demourl",
       "src_main_editorsection",
       "src_main_editorshortcuts",
-      "src_main_escapehtml",
-      "src_main_exportcard",
       "src_main_footer",
       "src_main_handlerouteclick",
       "src_main_header",
@@ -27,8 +30,7 @@
       "src_main_renderpolicy",
       "src_main_route",
       "src_main_setmetadata",
-      "src_main_stripdemolicense",
-      "src_main_updatepreview"
+      "src_main_stripdemolicense"
     ],
     "1": [
       "ref_dom",
@@ -55,6 +57,25 @@
       "tsconfig_include"
     ],
     "2": [
+      "src_main_announce",
+      "src_main_bindeditor",
+      "src_main_bindpaid",
+      "src_main_copysharelink",
+      "src_main_escapehtml",
+      "src_main_exportcard",
+      "src_main_updatepreview",
+      "src_model",
+      "src_model_decodesyntax",
+      "src_model_emptycard",
+      "src_model_encodesyntax",
+      "src_model_parseresult",
+      "src_model_parsesyntax",
+      "src_model_printablelimits",
+      "src_model_samplesyntax",
+      "src_model_test",
+      "src_model_validatesix"
+    ],
+    "3": [
       "package",
       "package_axe_core_playwright_playwright_core",
       "package_name",
@@ -71,7 +92,7 @@
       "package_type",
       "package_version"
     ],
-    "3": [
+    "4": [
       "axe_core_playwright",
       "package_devdependencies",
       "package_devdependencies_axe_core_playwright",
@@ -86,7 +107,7 @@
       "vite",
       "vitest"
     ],
-    "4": [
+    "5": [
       "src_card_svg",
       "src_card_svg_cardsvg",
       "src_card_svg_chordgrid",
@@ -100,28 +121,12 @@
       "src_export_slug",
       "src_model_card"
     ],
-    "5": [
-      "src_main_bindpaid",
-      "src_model",
-      "src_model_decodesyntax",
-      "src_model_emptycard",
-      "src_model_encodesyntax",
-      "src_model_parseresult",
-      "src_model_parsesyntax",
-      "src_model_printablelimits",
-      "src_model_samplesyntax",
-      "src_model_test",
-      "src_model_validatesix"
-    ],
     "6": [
-      "src_license",
-      "src_license_cachedlicenseisvalid",
-      "src_license_checkouturl",
-      "src_license_readverdict",
-      "src_license_restorelicense",
-      "src_license_verdict",
-      "src_license_verifystoredlicense",
-      "src_license_verifytoken"
+      "factory_qa_evidence_live_independent",
+      "factory_qa_evidence_live_independent_check",
+      "factory_qa_evidence_live_independent_delay",
+      "factory_qa_evidence_live_independent_failures",
+      "factory_qa_evidence_live_independent_result"
     ],
     "7": [
       "public_service_worker",
@@ -141,13 +146,13 @@
     ]
   },
   "cohesion": {
-    "0": 0.18783068783068782,
+    "0": 0.1632183908045977,
     "1": 0.09090909090909091,
-    "2": 0.13333333333333333,
-    "3": 0.15384615384615385,
-    "4": 0.42424242424242425,
-    "5": 0.3090909090909091,
-    "6": 0.42857142857142855,
+    "2": 0.21323529411764705,
+    "3": 0.13333333333333333,
+    "4": 0.15384615384615385,
+    "5": 0.42424242424242425,
+    "6": 0.4,
     "7": 1.0,
     "8": 1.0,
     "9": 1.0,
@@ -156,13 +161,13 @@
   },
   "gods": [
     {
-      "id": "tsconfig_compileroptions",
-      "label": "compilerOptions",
+      "id": "src_main_rendereditorpage",
+      "label": "renderEditorPage()",
       "degree": 14
     },
     {
-      "id": "src_main_rendereditorpage",
-      "label": "renderEditorPage()",
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
       "degree": 14
     },
     {
@@ -176,6 +181,11 @@
       "degree": 10
     },
     {
+      "id": "src_main_announce",
+      "label": "announce()",
+      "degree": 9
+    },
+    {
       "id": "src_card_svg_cardsvg",
       "label": "cardSvg()",
       "degree": 9
@@ -186,52 +196,25 @@
       "degree": 9
     },
     {
-      "id": "src_main_announce",
-      "label": "announce()",
-      "degree": 9
-    },
-    {
       "id": "src_export_downloadsvg",
       "label": "downloadSvg()",
       "degree": 8
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_main_bindeditor",
+      "label": "bindEditor()",
       "degree": 7
     },
     {
-      "id": "src_main_bindeditor",
-      "label": "bindEditor()",
+      "id": "src_main_exportcard",
+      "label": "exportCard()",
       "degree": 7
     }
   ],
   "surprises": [
     {
-      "source": "updatePreview()",
-      "target": "cardSvg()",
-      "source_files": [
-        "src/main.ts",
-        "src/card-svg.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
       "source": "exportCard()",
       "target": "downloadPng()",
-      "source_files": [
-        "src/main.ts",
-        "src/export.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "bindPaid()",
-      "target": "downloadSvg()",
       "source_files": [
         "src/main.ts",
         "src/export.ts"
@@ -257,6 +240,28 @@
       "source_files": [
         "src/main.ts",
         "src/model.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "updatePreview()",
+      "target": "cardSvg()",
+      "source_files": [
+        "src/main.ts",
+        "src/card-svg.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "bindPaid()",
+      "target": "downloadSvg()",
+      "source_files": [
+        "src/main.ts",
+        "src/export.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",

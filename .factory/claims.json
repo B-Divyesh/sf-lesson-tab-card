@@ -1,24 +1,45 @@
 [
   {
+    "id": "demo-first-screen",
+    "claim": "One click or ?demo=1 opens a populated G-to-C card within the first screen",
+    "where": "first-screen action, demo entry point, and README",
+    "test": "npm run test:e2e -- --grep @claim:demo-first-screen",
+    "sandbox": "fresh browser context at 390x844 and 1440x1000; enter from the landing action and query alias; assert the rendered sample title is inside the viewport"
+  },
+  {
     "id": "offline-reload",
     "claim": "Works offline after the first visit",
     "where": "first-screen facts and README",
     "test": "npm run test:e2e -- --grep @claim:offline-reload",
-    "sandbox": "fresh browser context; open /demo once, wait for the service worker, go offline, reload"
+    "sandbox": "fresh browser context; open /demo once, wait for the service worker, go offline, reload the populated demo and open /privacy"
   },
   {
     "id": "browser-private",
-    "claim": "Demo use and new share links keep lesson text out of HTTP requests",
+    "claim": "Editing, exports, and new share links keep lesson text out of HTTP requests",
     "where": "privacy section, privacy page, and README",
     "test": "npm run test:e2e -- --grep @claim:browser-private",
-    "sandbox": "fresh browser context; create a fragment share link from /demo, open it, and assert lesson text is absent from all request URLs and referrers"
+    "sandbox": "fresh browser context; edit a real card, export SVG, create and open a fragment share link, and assert lesson text is absent from all request URLs and referrers"
   },
   {
     "id": "demo-isolation",
-    "claim": "Demo sample data and changes are not saved to the real draft",
-    "where": "demo banner and privacy page",
+    "claim": "Demo actions and returned demo license tokens do not change real product storage",
+    "where": "demo banner, privacy page, demo documentation, and README",
     "test": "npm run test:e2e -- --grep @claim:demo-isolation",
-    "sandbox": "seed the real local-storage key, edit and reset /demo, assert the real key is unchanged"
+    "sandbox": "seed every real product local-storage key; open /demo?license=..., edit, reset, exit, and assert all keys are unchanged with no cross-origin request"
+  },
+  {
+    "id": "preview-updates",
+    "claim": "The lesson-card preview changes as you type",
+    "where": "How it works",
+    "test": "npm run test:e2e -- --grep @claim:preview-updates",
+    "sandbox": "edit the sample title and chord in /demo and assert the rendered SVG text and accessible name both change"
+  },
+  {
+    "id": "lesson-card-fields",
+    "claim": "The card renders a six-string chord grid, fingering, capo, six tab strings, and a teacher note",
+    "where": "README and demo sample",
+    "test": "npm run test:e2e -- --grep @claim:lesson-card-fields",
+    "sandbox": "open /demo and inspect the populated SVG for all six strings, fingering, capo, six tab lines, and sample note"
   },
   {
     "id": "free-exports",
@@ -35,8 +56,22 @@
     "sandbox": "fresh browser context; edit the real editor, assert the namespaced local-storage draft, reload, and compare the exact lesson syntax"
   },
   {
+    "id": "clear-saved-card",
+    "claim": "Clear card removes the saved lesson from this browser",
+    "where": "privacy page and editor action",
+    "test": "npm run test:e2e -- --grep @claim:clear-saved-card",
+    "sandbox": "fresh browser context; save a real lesson, confirm Clear card, and assert the editor, preview, and draft storage are empty"
+  },
+  {
+    "id": "keyboard-shortcuts",
+    "claim": "Ctrl+Enter exports SVG and Alt+1 returns focus to the editor",
+    "where": "editor shortcut note",
+    "test": "npm run test:e2e -- --grep @claim:keyboard-shortcuts",
+    "sandbox": "open /demo; invoke both documented shortcuts; assert the SVG download and editor focus"
+  },
+  {
     "id": "license-free-card-exports",
-    "claim": "SVG and PNG exports stay free",
+    "claim": "SVG and PNG card exports stay free",
     "where": "first-screen facts, paid tier, terms, and README",
     "test": "npm run test:e2e -- --grep @claim:license-free-card-exports",
     "sandbox": "fresh browser context with no stored license; use /demo, download both exports, and assert no cross-origin checkout or license request"
@@ -51,35 +86,63 @@
   {
     "id": "share-link",
     "claim": "A copied share link restores the exact lesson text",
-    "where": "editor action, how-it-works section, and README",
+    "where": "editor action, How it works, and README",
     "test": "npm run test:e2e -- --grep @claim:share-link",
     "sandbox": "copy the /demo link, open it in the clean context, and compare all syntax"
   },
   {
+    "id": "legacy-link-migration",
+    "claim": "An older ?c= share link is restored and immediately removed from the address",
+    "where": "privacy page and README",
+    "test": "npm run test:e2e -- --grep @claim:legacy-link-migration",
+    "sandbox": "open an encoded legacy query link; assert exact restored syntax, migration warning, and a clean address"
+  },
+  {
     "id": "syntax-validation",
     "claim": "Validation names the invalid lesson field and blocks export",
-    "where": "editor status, how-it-works section, and README",
+    "where": "editor status, How it works, and README",
     "test": "npm run test:e2e -- --grep @claim:syntax-validation",
-    "sandbox": "enter invalid frets and capo in /demo; assert named errors and no download"
+    "sandbox": "enter invalid frets and capo in /demo; assert named errors, no malformed SVG, no browser error, and no download"
+  },
+  {
+    "id": "syntax-boundaries",
+    "claim": "Frets accept x and 0 to 12, fingers accept x and 0 to 4, and capo accepts 0 to 12",
+    "where": "syntax help and README",
+    "test": "npm run test:e2e -- --grep @claim:syntax-boundaries",
+    "sandbox": "exercise each lower and upper bound in /demo, then reject the adjacent lower and upper values"
   },
   {
     "id": "worksheet-pack",
     "claim": "The optional worksheet pack exports four cards on one SVG sheet",
     "where": "paid tier and terms",
     "test": "npm run test:e2e -- --grep @claim:worksheet-pack",
-    "sandbox": "use the sample-only worksheet preview in /demo; assert four card titles in the SVG"
+    "sandbox": "use the sample-only worksheet preview in /demo; assert four card transforms in the SVG"
   },
   {
     "id": "paid-license-flow",
-    "claim": "A returned valid license activates the worksheet pack on this browser",
+    "claim": "A returned valid license activates the worksheet pack in this browser",
     "where": "worksheet pack and terms",
     "test": "npm run test:e2e -- --grep @claim:paid-license-flow",
-    "sandbox": "fresh browser context; intercept the documented billing verification response for a returned license and assert stored token, stripped URL, and worksheet activation"
+    "sandbox": "fresh browser context; intercept the billing verification response for a returned license and assert stored token, stripped URL, and worksheet activation"
+  },
+  {
+    "id": "license-restore",
+    "claim": "A pasted valid license activates the worksheet pack in this browser",
+    "where": "worksheet pack, terms, and README",
+    "test": "npm run test:e2e -- --grep @claim:license-restore",
+    "sandbox": "fresh browser context; paste a token, intercept a valid billing response, and assert storage plus worksheet activation"
+  },
+  {
+    "id": "billing-request-privacy",
+    "claim": "Buying or verifying a license uses Sociobot billing without sending lesson text",
+    "where": "privacy page and README",
+    "test": "npm run test:e2e -- --grep @claim:billing-request-privacy",
+    "sandbox": "enter unique lesson text, intercept both checkout and verification, and assert their URLs and bodies omit the lesson"
   },
   {
     "id": "paid-checkout",
-    "claim": "The advertised $9 worksheet pack opens the hosted checkout",
-    "where": "worksheet pack and terms",
+    "claim": "The advertised $9 worksheet pack opens the hosted Dodo checkout through Sociobot",
+    "where": "worksheet pack, terms, and README",
     "test": "npm run test:e2e -- --grep @claim:paid-checkout",
     "sandbox": "request the production billing checkout endpoint without following redirects; assert its 303 redirect targets a Dodo hosted checkout session"
   }

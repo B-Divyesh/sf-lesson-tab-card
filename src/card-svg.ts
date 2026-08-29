@@ -43,7 +43,7 @@ export function cardSvg(card: Card): string {
     <text x="70" y="125" class="title">${escapeXml(card.title)}</text>
     <line x1="70" y1="145" x2="840" y2="145" class="rule"/>
     <text x="330" y="213" class="chord">${escapeXml(card.chord)}</text>
-    <text x="700" y="205" class="meta">CAPO ${card.capo || '—'}</text>
+    <text x="700" y="205" class="meta">CAPO ${card.capo}</text>
     ${grid}${tab}
     <line x1="70" y1="400" x2="840" y2="400" class="rule"/>
     <text x="70" y="446" class="eyebrow">TEACHER NOTE</text>

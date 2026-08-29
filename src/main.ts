@@ -18,8 +18,16 @@ let licenseNotice = '';
 boot();
 
 function boot() {
-  returnedLicense = captureReturnedLicense();
-  paid = cachedLicenseIsValid();
+  const initialUrl = new URL(location.href);
+  isDemo = demoUrl(initialUrl);
+  if (isDemo) {
+    stripDemoLicense(initialUrl);
+    returnedLicense = false;
+    paid = false;
+  } else {
+    returnedLicense = captureReturnedLicense();
+    paid = cachedLicenseIsValid();
+  }
   history.scrollRestoration = 'manual';
   history.replaceState({ ...history.state, scrollY: scrollY }, '');
   route(false);
@@ -28,6 +36,7 @@ function boot() {
     requestAnimationFrame(() => {
       scrollTo({ top: Number(event.state?.scrollY ?? 0), behavior: 'auto' });
       document.querySelector<HTMLElement>('h1')?.focus();
+      announce(document.title);
     });
   });
   document.addEventListener('click', handleRouteClick);
@@ -37,7 +46,11 @@ function boot() {
 
 function route(moveFocus = true) {
   const url = new URL(location.href);
-  isDemo = url.pathname === '/demo' || url.searchParams.get('demo') === '1';
+  isDemo = demoUrl(url);
+  if (isDemo) {
+    stripDemoLicense(url);
+    paid = false;
+  }
   setMetadata(isDemo ? '/demo' : url.pathname);
   if (url.pathname === '/' || isDemo) renderEditorPage(url);
   else if (url.pathname === '/privacy') renderPolicy('privacy');
@@ -45,13 +58,26 @@ function route(moveFocus = true) {
   else renderNotFound();
   if (moveFocus) {
     scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-    requestAnimationFrame(() => document.querySelector<HTMLElement>('h1')?.focus());
+    requestAnimationFrame(() => {
+      document.querySelector<HTMLElement>('h1')?.focus();
+      announce(document.title);
+    });
   }
+}
+
+function demoUrl(url: URL) {
+  return url.pathname === '/demo' || url.searchParams.get('demo') === '1';
+}
+
+function stripDemoLicense(url: URL) {
+  if (!url.searchParams.has('license')) return;
+  url.searchParams.delete('license');
+  history.replaceState(history.state, '', url.pathname + url.search + url.hash);
 }
 
 function setMetadata(path: string) {
   const values: Record<string, [string, string]> = {
-    '/': ['Lesson Tab Card — Make guitar lesson handouts', 'Type a chord, fingering, and short tab. Export one clear guitar lesson card as SVG or PNG.'],
+    '/': ['Lesson Tab Card — Make clear guitar lesson cards', 'Type a chord, fingering, and short tab. Export one clear guitar lesson card as SVG or PNG.'],
     '/demo': ['Demo — Lesson Tab Card', 'Edit a sample guitar lesson card in a sandbox. Nothing is saved.'],
     '/privacy': ['Privacy — Lesson Tab Card', 'Read how Lesson Tab Card stores lesson syntax and license details in your browser.'],
     '/terms': ['Terms — Lesson Tab Card', 'Read the terms for using Lesson Tab Card and its optional worksheet license.'],
@@ -60,6 +86,11 @@ function setMetadata(path: string) {
   document.title = title;
   document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', description);
   document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href', `https://lesson-tab-card.sociobot.in${path}`);
+  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute('content', title);
+  document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute('content', description);
+  document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', `https://lesson-tab-card.sociobot.in${path}`);
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.setAttribute('content', title);
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')?.setAttribute('content', description);
 }
 
 function renderEditorPage(url: URL) {
@@ -82,13 +113,15 @@ function renderEditorPage(url: URL) {
   }
 
   app.innerHTML = `${isDemo ? demoBanner() : ''}${header()}
-    <main id="main" tabindex="-1">
-      <section class="hero" aria-labelledby="page-title">
+    <main id="main" class="${isDemo ? 'demo-main' : ''}" tabindex="-1">
+      ${isDemo ? `<section class="demo-intro" aria-labelledby="page-title">
+        <div><h1 id="page-title" tabindex="-1">Edit the sample lesson card</h1><p>Change the G to C exercise below.</p></div>
+        <p class="demo-note">This sandbox never reads or changes your saved card.</p>
+      </section>` : `<section class="hero" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="kicker">LESSON-SPEED NOTATION / 01</p>
-          <h1 id="page-title" tabindex="-1">${isDemo ? 'Edit the sample lesson card' : 'Make a clear guitar lesson card'}</h1>
-          <p class="lede">${isDemo ? 'Change the G to C exercise. This sandbox never touches your saved card.' : 'For teachers and players who need a readable handout before the lesson moves on.'}</p>
-          ${isDemo ? '' : `<div class="hero-action"><a class="button primary" href="/demo" data-route>Try it with sample data</a><span>Loads a G to C warm-up below.</span></div>`}
+          <h1 id="page-title" tabindex="-1">Make a clear guitar lesson card</h1>
+          <p class="lede">For teachers and players who need a readable card before the lesson moves on.</p>
+          <div class="hero-action"><a class="button primary" href="/demo" data-route>Try it with sample data</a><span>Loads a G to C warm-up below.</span></div>
           <ul class="plain-facts" aria-label="Product facts">
             <li>Works offline after the first visit</li>
             <li>Your card stays in this browser</li>
@@ -96,23 +129,22 @@ function renderEditorPage(url: URL) {
           </ul>
         </div>
         <div class="hero-stamp" aria-hidden="true"><b>6</b><span>strings</span><i>→</i><b>1</b><span>clear card</span></div>
-      </section>
+      </section>`}
       ${editorSection()}
       <section class="process" aria-labelledby="how-heading">
-        <div class="section-label">THE SHORT ROUTE</div>
-        <h2 id="how-heading">How to make a card</h2>
+        <p class="section-label">HOW IT WORKS</p>
+        <h2 id="how-heading">Make a card in three steps</h2>
         <ol class="steps">
-          <li><b>01 / Type</b><span>Fill the seven short lines. The preview changes as you type.</span></li>
+          <li><b>01 / Type</b><span>Fill the short lesson fields. The preview changes as you type.</span></li>
           <li><b>02 / Check</b><span>Fix any named line before you hand the card over.</span></li>
           <li><b>03 / Share</b><span>Export an image or copy a link for the student.</span></li>
         </ol>
         <figure class="desk-art">
           <img src="/assets/lesson-desk.webp" width="960" height="640" loading="lazy" decoding="async" alt="A blank cream lesson card sits beside guitar strings, a yellow note, and a blue marker." />
-          <figcaption>A card-sized space keeps the lesson focused. Original image made for this product.</figcaption>
         </figure>
       </section>
       <section class="limits" aria-labelledby="limits-heading">
-        <div><p class="section-label">KEEPS OUT OF THE WAY</p><h2 id="limits-heading">A handout, not a score editor</h2></div>
+        <div><p class="section-label">LIMITS AND PRIVACY</p><h2 id="limits-heading">A lesson card, not a score editor</h2></div>
     <p>There is no song library, playback, account, or tracking. Lesson Tab Card stores one draft in your browser. New share links keep lesson text after the # sign.</p>
       </section>
       ${paidSection()}
@@ -144,7 +176,7 @@ function editorSection() {
         <button type="button" class="text-button" id="clear-card">Clear card</button>
       </div>
       <div id="errors" class="validation" aria-live="polite"></div>
-      <details class="syntax-help"><summary>Show the seven-line format</summary><pre>title: G to C change
+      <details class="syntax-help"><summary>Show the lesson format</summary><pre>title: G to C change
 chord: G
 frets: 3 2 0 0 0 3
 fingers: 2 1 0 0 0 3
@@ -271,12 +303,12 @@ async function copyShareLink() {
 
 function paidSection() {
   return `<section class="paid" id="worksheet-pack" aria-labelledby="paid-heading">
-    <div><p class="section-label">OPTIONAL PACK / $9 ONCE</p><h2 id="paid-heading">Print four cards on one sheet</h2><p>The free editor and single-card exports do not change. The worksheet pack adds a four-card SVG page for lesson folders.</p></div>
+    <div><p class="section-label">OPTIONAL PACK / $9 ONCE</p><h2 id="paid-heading">Print four cards on one sheet</h2><p>The free editor exports one lesson card as SVG or PNG. The worksheet pack adds a four-card SVG page for lesson folders.</p></div>
     <div class="paid-actions">
       ${licenseNotice ? `<p class="message error">${licenseNotice}</p>` : ''}
-      ${paid || isDemo ? `<p class="license-state success">${isDemo ? 'Sample worksheet preview is open in this demo.' : 'Worksheet pack active on this browser.'}</p><button class="button primary" id="export-worksheet">${isDemo ? 'Export sample 4-card worksheet' : 'Export 4-card worksheet'}</button>` : `<a class="button primary" href="${checkoutUrl}">Buy worksheet pack — $9</a>`}
+      ${isDemo ? `<p class="license-state success">Sample worksheet preview is open in this demo.</p><button class="button primary" id="export-worksheet">Export sample 4-card worksheet</button><p class="fine-print">Leave the demo before buying or verifying a license.</p>` : `${paid ? `<p class="license-state success">Worksheet pack active on this browser.</p><button class="button primary" id="export-worksheet">Export 4-card worksheet</button>` : `<a class="button primary" href="${checkoutUrl}">Buy worksheet pack — $9</a>`}
       <details><summary>Have a license? Paste it</summary><label for="license-token">License token</label><input id="license-token" autocomplete="off" /><button class="button" id="restore-license" type="button" aria-label="Verify license">Verify license</button><p id="license-message" aria-live="polite"></p></details>
-      <p class="fine-print">One-time purchase. Sociobot and Dodo handle checkout and refunds. See <a href="/terms" data-route>terms</a>.</p>
+      <p class="fine-print">One-time purchase. Checkout opens through Sociobot and Dodo. See <a href="/terms" data-route>terms</a>.</p>`}
     </div>
   </section>`;
 }
@@ -300,23 +332,23 @@ function bindPaid() {
 
 function renderPolicy(kind: 'privacy' | 'terms') {
   const privacy = kind === 'privacy';
-  app.innerHTML = `${header()}<main id="main" class="text-page" tabindex="-1"><p class="kicker">PLAIN-LANGUAGE POLICY</p><h1 tabindex="-1">${privacy ? 'Your lesson stays on your device' : 'Terms for using Lesson Tab Card'}</h1>
+  app.innerHTML = `${header()}<main id="main" class="text-page" tabindex="-1"><h1 tabindex="-1">${privacy ? 'Your lesson stays on your device' : 'Terms for using Lesson Tab Card'}</h1>
     ${privacy ? `<p class="lede">Lesson Tab Card has no account system and no analytics.</p>
       <h2>What the browser stores</h2><p>The editor stores your current lesson text in local storage. New share links keep the same text after the # sign. Demo mode keeps its sample in memory and does not read or write your saved lesson.</p>
-      <h2>What leaves the browser</h2><p>New share-link lesson text and exports do not leave your browser in HTTP requests. If you buy or verify a worksheet license, your browser contacts the Sociobot billing API. We do not send your lesson text with that request.</p>
+      <h2>What leaves the browser</h2><p>New share-link lesson text and exports do not leave your browser in HTTP requests. Buying or verifying a worksheet license contacts the Sociobot billing API. Checkout then moves to Dodo. Neither request includes lesson text.</p>
       <h2>Older share links</h2><p>Older links that use ?c= put lesson text in the request address. Open one only to copy a new link, then remove the old link.</p>
       <h2>How to remove data</h2><p>Use “Clear card” to remove the saved lesson. Clear this site’s browser storage to remove a license token and its last verification result.</p>
       <h2>Questions</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a>.</p>` : `<p class="lede">Use the editor for your own lesson material and original exercises.</p>
       <h2>Free editor</h2><p>You may create, export, print, and share lesson cards. Do not use the product to distribute material you do not have permission to share.</p>
-      <h2>Worksheet license</h2><p>The worksheet pack costs $9 as a one-time purchase. A valid license activates it on one browser at a time. You can paste the same token on another device. Accessibility, validation, SVG export, PNG export, and share links remain free.</p>
-      <h2>Checkout and refunds</h2><p>Sociobot and Dodo are the merchant of record. They process payment and refunds. A refunded or revoked license stops activating the worksheet pack.</p>
+      <h2>Worksheet license</h2><p>The worksheet pack costs $9 as a one-time purchase. A valid returned or pasted license activates the worksheet pack in this browser. SVG and PNG card exports remain free.</p>
+      <h2>Checkout</h2><p>Checkout opens through Sociobot and Dodo. Email support for purchase questions.</p>
       <h2>No warranty</h2><p>The software is provided under the MIT License without warranty. Check fret numbers and teaching notes before sharing a card.</p>
       <h2>Questions</h2><p>Email <a href="mailto:support@sociobot.in">support@sociobot.in</a>.</p>`}
     <p><a class="button" href="/" data-route>Return to the editor</a></p></main>${footer()}${liveRegions()}`;
 }
 
 function renderNotFound() {
-  app.innerHTML = `${header()}<main id="main" class="not-found" tabindex="-1"><div class="broken-grid" aria-hidden="true">× 0 3 ? 2 ×</div><p class="kicker">404 / WRONG FRET</p><h1 tabindex="-1">This page is not on the chart</h1><p>Return to the editor and make a lesson card.</p><a class="button primary" href="/" data-route>Return to the editor</a></main>${footer()}${liveRegions()}`;
+  app.innerHTML = `${header()}<main id="main" class="not-found" tabindex="-1"><div class="broken-grid" aria-hidden="true">× 0 3 ? 2 ×</div><p class="kicker">PAGE NOT FOUND</p><h1 tabindex="-1">This page does not exist</h1><p>Return to the editor and make a lesson card.</p><a class="button primary" href="/" data-route>Return to the editor</a></main>${footer()}${liveRegions()}`;
 }
 
 function header() {
@@ -324,11 +356,11 @@ function header() {
 }
 
 function footer() {
-  return `<footer><p><b>Lesson Tab Card</b> — Make a clear guitar handout.</p><nav aria-label="Footer navigation"><a href="/privacy" data-route>Privacy</a><a href="/terms" data-route>Terms</a><a href="https://sociobot.in">Built by Param Factory <span class="sr-only">(external site)</span></a></nav><p>v1.0 / build 2026.08.28 · Original generated imagery.</p></footer>`;
+  return `<footer><p><b>Lesson Tab Card</b> — Make a clear guitar lesson card.</p><nav aria-label="Footer navigation"><a href="/privacy" data-route>Privacy</a><a href="/terms" data-route>Terms</a><a href="https://sociobot.in">Built by Param Factory <span class="sr-only">(external site)</span></a></nav><p>v1.1 / build 2026.08.29</p></footer>`;
 }
 
 function demoBanner() {
-  return `<aside class="demo-banner" aria-label="Demo status"><strong>Demo — sample data, nothing is saved</strong><div><button type="button" id="reset-demo">Reset demo</button><button type="button" id="start-real">Start for real</button></div></aside>`;
+  return `<aside class="demo-banner" aria-label="Demo status"><div class="demo-status"><strong>Demo — sample data, nothing is saved</strong><span>Open your saved card next, or a blank card if none exists.</span></div><div class="demo-actions"><button type="button" id="reset-demo">Reset demo</button><button type="button" id="start-real">Open my saved card</button></div></aside>`;
 }
 
 function liveRegions() {

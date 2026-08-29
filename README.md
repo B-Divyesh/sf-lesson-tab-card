@@ -32,6 +32,8 @@ The real editor stores one draft in browser local storage. During ordinary editi
 
 Buying or verifying a worksheet license contacts the Sociobot billing API. Checkout then moves to Dodo. Neither request includes lesson text.
 
+Sociobot uses Dodo as the merchant of record. Dodo handles refunds. A refund revokes the license automatically.
+
 ## Optional worksheet pack
 
 The free editor exports one lesson card as SVG or PNG. A $9 one-time license adds a four-card worksheet SVG. A returned or pasted valid license activates the worksheet pack in this browser. A previously verified license stays active offline while its next check waits for a connection.

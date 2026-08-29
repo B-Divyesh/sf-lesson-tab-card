@@ -161,10 +161,17 @@
     "sandbox": "enter unique lesson text, intercept both checkout and verification, and assert their URLs and bodies omit the lesson"
   },
   {
+    "id": "merchant-refund-policy",
+    "claim": "Dodo is the merchant of record and handles refunds; a billing revocation locks the worksheet pack",
+    "where": "worksheet pack, terms, and README",
+    "test": "npm run test:e2e -- --grep @claim:merchant-refund-policy",
+    "sandbox": "fresh browser context with a stale valid verdict; assert the merchant and refund disclosure, return a revoked billing verdict, assert the worksheet locks, then assert the disclosure on /terms"
+  },
+  {
     "id": "paid-checkout",
-    "claim": "The advertised $9 worksheet pack opens the hosted Dodo checkout through Sociobot",
+    "claim": "The hosted Dodo checkout reached through Sociobot shows Lesson Tab Card Worksheet Pack as a $9.00 one-time purchase",
     "where": "worksheet pack, terms, and README",
     "test": "npm run test:e2e -- --grep @claim:paid-checkout",
-    "sandbox": "request the production billing checkout endpoint without following redirects; assert its 303 redirect targets a Dodo hosted checkout session"
+    "sandbox": "request the production billing checkout endpoint, follow its Dodo session redirect, and assert the visible product name, $9.00 amount, and one-time license description"
   }
 ]

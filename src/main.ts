@@ -336,7 +336,7 @@ function paidSection() {
       ${licenseNotice ? `<p class="message error">${licenseNotice}</p>` : ''}
       ${isDemo ? `<p class="license-state success">Sample worksheet preview is open in this demo.</p><button class="button primary" id="export-worksheet">Export sample 4-card worksheet</button><p class="fine-print">Leave the demo before buying or verifying a license.</p>` : `${paid ? `<p class="license-state success">Worksheet pack active on this browser.</p><button class="button primary" id="export-worksheet">Export 4-card worksheet</button>` : `<a class="button primary" href="${checkoutUrl}">Buy worksheet pack — $9</a>`}
       <details><summary>Have a license? Paste it</summary><label for="license-token">License token</label><input id="license-token" autocomplete="off" /><button class="button" id="restore-license" type="button" aria-label="Verify license">Verify license</button><p id="license-message" aria-live="polite"></p></details>
-      <p class="fine-print">One-time purchase. After one successful check, the pack stays active offline until billing confirms the license is inactive. Checkout opens through Sociobot and Dodo. See <a href="/terms" data-route>terms</a>.</p>`}
+      <p class="fine-print">One-time purchase for $9. After one successful check, the pack stays active offline until billing confirms the license is inactive. Sociobot uses Dodo as the merchant of record. Dodo handles refunds. A refund revokes the license automatically. See <a href="/terms" data-route>terms</a>.</p>`}
     </div>
   </section>`;
 }
@@ -369,7 +369,7 @@ function renderPolicy(kind: 'privacy' | 'terms') {
       <h2>Questions</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a>.</p>` : `<p class="lede">Use the editor for your own lesson material and original exercises.</p>
       <h2>Free editor</h2><p>You may create, export, print, and share lesson cards. Do not use the product to distribute material you do not have permission to share.</p>
       <h2>Worksheet license</h2><p>The worksheet pack costs $9 as a one-time purchase. A valid returned or pasted license activates the worksheet pack in this browser. A previously verified license stays active offline while its next check waits for a connection. SVG and PNG card exports remain free.</p>
-      <h2>Checkout</h2><p>Checkout opens through Sociobot and Dodo. Email support for purchase questions.</p>
+      <h2>Checkout and refunds</h2><p>Sociobot uses Dodo as the merchant of record. Dodo handles refunds. A refund revokes the license automatically. Email support for purchase or refund questions.</p>
       <h2>No warranty</h2><p>The software is provided under the MIT License without warranty. Check fret numbers and teaching notes before sharing a card.</p>
       <h2>Questions</h2><p>Email <a href="mailto:support@sociobot.in">support@sociobot.in</a>.</p>`}
     <p><a class="button" href="/" data-route>Return to the editor</a></p></main>${footer()}${liveRegions()}`;

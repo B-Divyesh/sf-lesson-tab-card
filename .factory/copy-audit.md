@@ -43,9 +43,11 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | You can check the token or buy the pack again. | 10 | `rejected-returned-license` |
 | License check finished. | 3 | `rejected-returned-license` |
 | The saved license is not active. | 7 | `rejected-returned-license` |
-| One-time purchase. | 2 | Purchase term |
+| One-time purchase for $9. | 4 | `paid-checkout` |
 | After one successful check, the pack stays active offline until billing confirms the license is inactive. | 15 | `paid-license-offline-recovery` |
-| Checkout opens through Sociobot and Dodo. | 6 | `paid-checkout` |
+| Sociobot uses Dodo as the merchant of record. | 8 | `merchant-refund-policy` |
+| Dodo handles refunds. | 3 | `merchant-refund-policy` |
+| A refund revokes the license automatically. | 7 | `merchant-refund-policy` |
 | See terms. | 2 | Legal link |
 | Edit the sample lesson card. | 5 | Demo job |
 | Change the G to C exercise below. | 7 | Demo action |
@@ -77,8 +79,10 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | A valid returned or pasted license activates the worksheet pack in this browser. | 12 | `paid-license-flow`, `license-restore` |
 | A previously verified license stays active offline while its next check waits for a connection. | 14 | `paid-license-offline-recovery` |
 | SVG and PNG card exports remain free. | 7 | `license-free-card-exports` |
-| Checkout opens through Sociobot and Dodo. | 6 | `paid-checkout` |
-| Email support for purchase questions. | 5 | Support action |
+| Sociobot uses Dodo as the merchant of record. | 8 | `merchant-refund-policy` |
+| Dodo handles refunds. | 3 | `merchant-refund-policy` |
+| A refund revokes the license automatically. | 7 | `merchant-refund-policy` |
+| Email support for purchase or refund questions. | 7 | Support action |
 | The software is provided under the MIT License without warranty. | 10 | Legal term |
 | Check fret numbers and teaching notes before sharing a card. | 10 | Safety instruction |
 
@@ -104,6 +108,9 @@ Audited 2026-08-29. Counts treat contractions, URLs, keyboard labels, and hyphen
 | Buying or verifying a worksheet license contacts the Sociobot billing API. | 10 | `billing-request-privacy` |
 | Checkout then moves to Dodo. | 5 | `paid-checkout` |
 | Neither request includes lesson text. | 5 | `billing-request-privacy` |
+| Sociobot uses Dodo as the merchant of record. | 8 | `merchant-refund-policy` |
+| Dodo handles refunds. | 3 | `merchant-refund-policy` |
+| A refund revokes the license automatically. | 7 | `merchant-refund-policy` |
 | The free editor exports one lesson card as SVG or PNG. | 11 | `license-free-card-exports` |
 | A $9 one-time license adds a four-card worksheet SVG. | 9 | `worksheet-pack`, `paid-checkout` |
 | A returned or pasted valid license activates the worksheet pack in this browser. | 12 | `paid-license-flow`, `license-restore` |

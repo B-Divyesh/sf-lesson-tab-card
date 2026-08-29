@@ -448,7 +448,7 @@ test('shows recovery feedback when a returned license is rejected @claim:rejecte
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('sb_license_verdict:lesson-tab-card') ?? '{}').valid)).toBe(false);
 });
 
-test('revokes an optimistically active stale license only after a definitive invalid response @regression:stale-license-revocation', async ({ page }) => {
+test('states the merchant and refund policy and locks a revoked license @claim:merchant-refund-policy @regression:stale-license-revocation', async ({ page }) => {
   let releaseResponse!: () => void;
   const responseGate = new Promise<void>((resolve) => { releaseResponse = resolve; });
   await page.route('https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=revoked-paid-token', async (route) => {
@@ -462,10 +462,18 @@ test('revokes an optimistically active stale license only after a definitive inv
 
   await page.goto('/');
   await expect(page.getByText('Worksheet pack active on this browser.')).toBeVisible();
+  await expect(page.getByText('Sociobot uses Dodo as the merchant of record.')).toBeVisible();
+  await expect(page.getByText('Dodo handles refunds.')).toBeVisible();
+  await expect(page.getByText('A refund revokes the license automatically.')).toBeVisible();
   releaseResponse();
   await expect(page.getByText('The saved license is no longer active. You can check the token or buy the pack again.')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Buy worksheet pack — $9' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Export 4-card worksheet' })).toHaveCount(0);
+  await page.goto('/terms');
+  await expect(page.getByRole('heading', { name: 'Checkout and refunds' })).toBeVisible();
+  await expect(page.getByText('Sociobot uses Dodo as the merchant of record.')).toBeVisible();
+  await expect(page.getByText('Dodo handles refunds.')).toBeVisible();
+  await expect(page.getByText('A refund revokes the license automatically.')).toBeVisible();
 });
 
 test('shows the exact source-length recovery at 4,001 characters @claim:source-length-boundary', async ({ page }) => {
@@ -528,8 +536,16 @@ test('keeps lesson syntax out of checkout and verification requests @claim:billi
   }
 });
 
-test('starts the advertised $9 hosted checkout @claim:paid-checkout', async ({ request }) => {
+test('matches the advertised product, $9 price, and one-time hosted checkout @claim:paid-checkout', async ({ request, page }) => {
   const response = await request.get('https://api.sociobot.in/api/v1/products/lesson-tab-card/checkout', { maxRedirects: 0 });
   expect(response.status()).toBe(303);
-  expect(response.headers().location).toMatch(/^https:\/\/checkout\.dodopayments\.com\/session\//);
+  const checkoutUrl = response.headers().location;
+  expect(checkoutUrl).toMatch(/^https:\/\/checkout\.dodopayments\.com\/session\//);
+
+  const checkout = await page.goto(checkoutUrl!, { waitUntil: 'domcontentloaded' });
+  expect(checkout?.status()).toBe(200);
+  const orderItem = page.getByRole('article');
+  await expect(orderItem.getByRole('heading', { name: 'Lesson Tab Card Worksheet Pack' })).toBeVisible();
+  await expect(orderItem.getByText('$9.00', { exact: true })).toBeVisible();
+  await expect(orderItem.getByText('One-time worksheet license for Lesson Tab Card.', { exact: false })).toBeVisible();
 });

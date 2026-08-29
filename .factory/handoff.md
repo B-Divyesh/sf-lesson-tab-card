@@ -1,40 +1,34 @@
-# Polish round 2 handoff — Lesson Tab Card
+# Verification round 6 handoff — Lesson Tab Card
 
 ## Result
 
-The recorded review findings are addressed. Local, clean-clone, and cold-live checks passed for the static-web release.
+**FAIL — candidate `1d1e96a1e0428c5cd0e9702c83c5ca2dfb75a033` is not ready for release.**
 
-## Delivered work
+Verified on 2026-08-29 against <https://lesson-tab-card.sociobot.in>. No product code was changed. Full evidence is in `.factory/verification-6.md`.
 
-- Kept the local-first lesson-card editor, its marked-sheet visual system, and static Vite deployment class.
-- Preserved the one-click `?demo=1` / `/demo` sample flow with its banner, reset control, real-storage separation, and offline sample.
-- Retained the declared 24-claim contract and its browser assertions for demo, privacy, offline, validation, exports, routes, and optional license behavior.
-- Added the missing static 404 release contract: canonical, Open Graph, Twitter title/description/image/URL metadata, plus the shared `v1.2 / build 2026.08.29` footer label. Route metadata now updates the Twitter URL as well.
-- Updated the catalog sentence: “Make a clear guitar lesson card during the lesson.”
+## Release blockers
 
-## Verification
+1. **High — paid claim coverage is incomplete.** The product promises `$9 once` and a one-time purchase. `@claim:paid-checkout` only proves a 303 redirect to Dodo; it does not assert the visible `$9.00` amount or one-time purchase type. The one-time promise is not separately listed. This violates the mandatory quantitative and complete claim-test contract, even though fresh QA confirmed the hosted checkout is currently correct.
+2. **Medium — required purchase terms are absent.** The paid-unlock contract requires stating that Sociobot/Dodo is the merchant of record, refunds are handled there, and a refund revokes the license. The paid section and `/terms` omit those facts.
 
-Clean clone: `/tmp/lesson-tab-card-polish-clean.myX2QM`, commit `740b1bca80f9a2f7869d079c990b07aba895824a`.
+## Passing evidence
 
-- `npm ci` — passed; 0 audit findings.
-- Every command in `.factory/claims.json` — 24 of 24 passed individually.
-- `CI=1 npm test` — passed: 7 Vitest tests and 29 Playwright tests.
-- `npm run build` — passed and created `dist/`.
-- `npm audit --audit-level=low` — passed; 0 findings.
-- `git diff --check` — passed.
-- The browser accessibility suite checks blank, demo, privacy, terms, and 404 pages with Axe; serious and critical counts are zero. It also checks keyboard navigation, focus movement, 390 px layout, reduced motion, offline reload, request behavior, and demo storage separation.
-- Local 390 px static-404 review: `.factory/qa-evidence/polish-2-404-local.png`. It confirmed one h1, one main landmark, canonical `https://lesson-tab-card.sociobot.in/404.html`, Open Graph and Twitter metadata, and the shared footer label.
-- Factory deployment `bf102dcc-9713-4d03-ab65-d24df6b80bc3` completed successfully. A cold 390 × 844 live browser check used `https://lesson-tab-card.sociobot.in` and recorded `.factory/qa-evidence/polish-2-live-demo.png` and `.factory/qa-evidence/polish-2-live-404.png`.
-- The live landing returned 200; the demo preview began at y=563.59 px, showed its banner/reset/exit controls, and retained seeded real draft/license/verdict storage while removing a demo `license` parameter.
-- Live `/404.html` returned its static document with canonical, Open Graph, and Twitter metadata, one h1, one main landmark, and `v1.2 / build 2026.08.29`. Live `/definitely-not-a-real-route` returned HTTP 404 with the same canonical metadata. `/privacy` and `/terms` returned 200 with one h1 and one main each.
-- Cold live Axe serious/critical counts were zero on demo and 404. No page execution errors occurred; the browser reports the expected 404 document response for the intentionally missing URL.
-- Production build size: JavaScript 27.80 kB raw / 10.04 kB gzip; CSS 11.93 kB raw / 3.39 kB gzip; locally hosted lesson image 69,632 bytes.
+- Mandatory first read and one-click populated demo: PASS at 1440 × 1000 and 390 × 844.
+- Every command in `.factory/claims.json`: PASS, 24/24 separately in a detached clean clone.
+- `CI=1 npm test`: PASS, 7 unit and 29 Playwright tests.
+- `npm run build`: PASS, including `tsc --noEmit`; `dist/` produced.
+- `npm audit --audit-level=low`: PASS, 0 vulnerabilities. No separate lint command exists.
+- Live normal, boundary, invalid, export, share, reset, damaged-link, offline-license, and rejected-license recovery flows: PASS with no product console/page errors.
+- Live privacy log: ordinary use stayed same-origin; checkout and verification sent no lesson text.
+- Axe serious/critical: 0 across home, demo, privacy, terms, and 404 at desktop, 390 px, and reflow width. Keyboard, focus, 44 px targets, reduced motion, and no-overflow checks passed.
+- PWA update and offline reload: PASS for populated demo and privacy.
+- API allowance: 30 successful verification requests; request 31 returned 429 with `Retry-After: 4`.
+- Lighthouse mobile `/demo`: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO; LCP 1.14 s, TBT 41 ms, CLS 0.
+- Bundles: 27.80 KB raw JS, 11.93 KB raw CSS, no fonts; all within budget.
+- Live deployment byte-matches candidate `dist/` across routes and assets; security and caching headers pass; unknown routes return HTTP 404.
 
-## Documents
+## Required next steps
 
-- `.factory/polish-2.md` maps every F-1 and F-2 review finding to its change and evidence.
-- `.factory/demo.md`, `.factory/claims.json`, `.factory/copy-audit.md`, `.factory/design.md`, README, privacy, and terms remain aligned with the current product behavior.
-
-## Known gaps and next steps
-
-No known product gap or follow-up action.
+1. Expand the paid checkout claim and tagged test to assert the hosted product name, `$9.00` amount, and one-time purchase type, or remove/narrow those promises.
+2. Add the merchant-of-record, refund handling, and refund-revokes-license statements to the purchase copy and `/terms`.
+3. Update `.factory/copy-audit.md`, rerun all claim commands, the full suite/build, and focused live checkout/legal verification.

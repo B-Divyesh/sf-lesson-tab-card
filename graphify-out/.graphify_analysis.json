@@ -170,11 +170,6 @@
       "degree": 10
     },
     {
-      "id": "src_model_parsesyntax",
-      "label": "parseSyntax()",
-      "degree": 9
-    },
-    {
       "id": "src_card_svg_cardsvg",
       "label": "cardSvg()",
       "degree": 9
@@ -182,6 +177,11 @@
     {
       "id": "src_main_boot",
       "label": "boot()",
+      "degree": 9
+    },
+    {
+      "id": "src_model_parsesyntax",
+      "label": "parseSyntax()",
       "degree": 9
     },
     {
@@ -195,20 +195,20 @@
       "degree": 8
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_main_bindeditor",
+      "label": "bindEditor()",
       "degree": 7
     },
     {
-      "id": "src_main_bindeditor",
-      "label": "bindEditor()",
+      "id": "src_main_exportcard",
+      "label": "exportCard()",
       "degree": 7
     }
   ],
   "surprises": [
     {
       "source": "boot()",
-      "target": "captureReturnedLicense()",
+      "target": "cachedLicenseIsValid()",
       "source_files": [
         "src/main.ts",
         "src/license.ts"
@@ -218,11 +218,11 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "exportCard()",
-      "target": "downloadPng()",
+      "source": "boot()",
+      "target": "captureReturnedLicense()",
       "source_files": [
         "src/main.ts",
-        "src/export.ts"
+        "src/license.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
@@ -240,22 +240,22 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "exportCard()",
-      "target": "downloadSvg()",
+      "source": "bindPaid()",
+      "target": "parseSyntax()",
       "source_files": [
         "src/main.ts",
-        "src/export.ts"
+        "src/model.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "bridges separate communities"
     },
     {
-      "source": "boot()",
-      "target": "cachedLicenseIsValid()",
+      "source": "renderEditorPage()",
+      "target": "decodeSyntax()",
       "source_files": [
         "src/main.ts",
-        "src/license.ts"
+        "src/model.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",

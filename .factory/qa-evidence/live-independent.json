@@ -1,0 +1,266 @@
+{
+  "testedAt": "2026-08-29T09:20:02.786Z",
+  "base": "https://lesson-tab-card.sociobot.in",
+  "failures": [],
+  "desktopFlow": {
+    "status": 200,
+    "ready": true,
+    "svg": {
+      "name": "qa-boundary.svg",
+      "bytes": 3158,
+      "hasTitle": true
+    },
+    "png": {
+      "name": "qa-boundary.png",
+      "bytes": 114102,
+      "signature": [
+        137,
+        80,
+        78,
+        71,
+        13,
+        10,
+        26,
+        10
+      ]
+    },
+    "share": {
+      "query": "",
+      "hashPrefix": "#c=d",
+      "exactRestore": true
+    },
+    "invalid": {
+      "text": "5 fixes needed:\n\nLine 5 has an invalid capo. Use a whole number from 0 to 12.\nFrets value 1 is invalid.\nFrets value 2 is invalid.\nFingers value 1 is invalid.\nFingers value 2 is invalid.",
+      "hasNaN": false,
+      "downloaded": false
+    },
+    "xss": {
+      "injectedNodes": 0,
+      "escaped": true
+    },
+    "sourceLength": {
+      "at4000HasLengthError": false,
+      "over4000Text": "1 fix needed:\n\nThe card is over 4,000 characters. Shorten it and try again.",
+      "resetRestoredSample": true
+    },
+    "damagedFragmentHasRecovery": true,
+    "requestCount": 17,
+    "externalRequests": [],
+    "privacyLeaks": [],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/demo",
+        "referer": "",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-BrDDGZ3C.js",
+        "referer": "https://lesson-tab-card.sociobot.in/demo",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-Cs2CYvcv.css",
+        "referer": "https://lesson-tab-card.sociobot.in/demo",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/lesson-desk.webp",
+        "referer": "https://lesson-tab-card.sociobot.in/demo",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "blob:https://lesson-tab-card.sociobot.in/22a32eb0-fa2d-4fee-8a70-d1af65840484",
+        "referer": "",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/",
+        "referer": "",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-BrDDGZ3C.js",
+        "referer": "https://lesson-tab-card.sociobot.in/",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-Cs2CYvcv.css",
+        "referer": "https://lesson-tab-card.sociobot.in/",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/lesson-desk.webp",
+        "referer": "https://lesson-tab-card.sociobot.in/",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/demo",
+        "referer": "",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-BrDDGZ3C.js",
+        "referer": "https://lesson-tab-card.sociobot.in/demo",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-Cs2CYvcv.css",
+        "referer": "https://lesson-tab-card.sociobot.in/demo",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/lesson-desk.webp",
+        "referer": "https://lesson-tab-card.sociobot.in/demo",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/",
+        "referer": "",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-BrDDGZ3C.js",
+        "referer": "https://lesson-tab-card.sociobot.in/",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/main-Cs2CYvcv.css",
+        "referer": "https://lesson-tab-card.sociobot.in/",
+        "body": ""
+      },
+      {
+        "method": "GET",
+        "url": "https://lesson-tab-card.sociobot.in/assets/lesson-desk.webp",
+        "referer": "https://lesson-tab-card.sociobot.in/",
+        "body": ""
+      }
+    ],
+    "seriousCriticalAxe": [],
+    "errors": []
+  },
+  "mobile": {
+    "layout": {
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    "undersized": [],
+    "focusStyle": {
+      "outline": "rgb(21, 94, 239) solid 4px",
+      "outlineColor": "rgb(21, 94, 239)",
+      "outlineWidth": "4px",
+      "outlineOffset": "4px"
+    },
+    "skipTargetFocused": true,
+    "alt1Focused": true,
+    "motion": {
+      "reducedMatches": true,
+      "maxDurationMs": 0.01
+    },
+    "seriousCriticalAxe": [],
+    "errors": []
+  },
+  "routesAndOffline": {
+    "routeResults": [
+      {
+        "path": "/",
+        "status": 200,
+        "title": "Lesson Tab Card — Make clear guitar lesson cards",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "imagesMissingAlt": 0
+      },
+      {
+        "path": "/demo",
+        "status": 200,
+        "title": "Demo — Lesson Tab Card",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "imagesMissingAlt": 0
+      },
+      {
+        "path": "/privacy",
+        "status": 200,
+        "title": "Privacy — Lesson Tab Card",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "imagesMissingAlt": 0
+      },
+      {
+        "path": "/terms",
+        "status": 200,
+        "title": "Terms — Lesson Tab Card",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "imagesMissingAlt": 0
+      },
+      {
+        "path": "/does-not-exist-qa5",
+        "status": 404,
+        "title": "Page not found — Lesson Tab Card",
+        "lang": "en",
+        "h1": 1,
+        "main": 1,
+        "imagesMissingAlt": 0
+      }
+    ],
+    "swBefore": {
+      "caches": [
+        "lesson-tab-card-v5"
+      ],
+      "active": "activated",
+      "waiting": null,
+      "installing": null
+    },
+    "offlineDemo": true,
+    "offlinePrivacy": true
+  },
+  "staleOfflineLicense": {
+    "activeMessage": true,
+    "worksheetButton": true,
+    "buyLinkCount": 0
+  },
+  "rejectedReturnedLicense": {
+    "url": "https://lesson-tab-card.sociobot.in/",
+    "storedToken": true,
+    "verdict": "{\"valid\":false,\"checkedAt\":1787995215973}",
+    "notice": true,
+    "announcement": "License check finished. The saved license is not active.",
+    "buyRecovery": true,
+    "pasteRecovery": true,
+    "responses": [
+      {
+        "url": "https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=qa-invalid-returned-license-5-1787995215674",
+        "status": 200,
+        "headers": {
+          "access-control-allow-origin": "https://lesson-tab-card.sociobot.in",
+          "cache-control": "no-store",
+          "content-length": "52",
+          "date": "Sat, 29 Aug 2026 09:20:15 GMT",
+          "content-type": "application/json",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-credentials": "true"
+        }
+      }
+    ]
+  }
+}

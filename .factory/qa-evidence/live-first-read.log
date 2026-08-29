@@ -1,0 +1,319 @@
+{
+  "viewport": {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000
+  },
+  "status": 200,
+  "url": "https://lesson-tab-card.sociobot.in/",
+  "title": "Lesson Tab Card — Make clear guitar lesson cards",
+  "h1": [
+    "MAKE A CLEAR GUITAR LESSON CARD"
+  ],
+  "viewportText": [
+    "LT",
+    "Editor",
+    "Demo",
+    "Privacy",
+    "Make a clear guitar lesson card",
+    "For teachers and players who need a readable card before the lesson moves on.",
+    "Try it with sample data",
+    "Loads a G to C warm-up below.",
+    "Works offline after the first visit",
+    "Your card stays in this browser",
+    "SVG and PNG exports stay free",
+    "6",
+    "strings",
+    "→",
+    "1",
+    "clear card",
+    "INPUT",
+    "Type the lesson",
+    "EMPTY",
+    "OUTPUT",
+    "Check the card",
+    "900 × 540"
+  ],
+  "actions": [
+    {
+      "text": "Skip to main content",
+      "tag": "A",
+      "top": -74,
+      "bottom": -19,
+      "visible": false
+    },
+    {
+      "text": "LT LESSON TAB CARD",
+      "tag": "A",
+      "top": 13,
+      "bottom": 57,
+      "visible": true
+    },
+    {
+      "text": "Editor",
+      "tag": "A",
+      "top": 13,
+      "bottom": 57,
+      "visible": true
+    },
+    {
+      "text": "Demo",
+      "tag": "A",
+      "top": 13,
+      "bottom": 57,
+      "visible": true
+    },
+    {
+      "text": "Privacy",
+      "tag": "A",
+      "top": 13,
+      "bottom": 57,
+      "visible": true
+    },
+    {
+      "text": "Try it with sample data",
+      "tag": "A",
+      "top": 606,
+      "bottom": 655,
+      "visible": true
+    },
+    {
+      "text": "Export SVG",
+      "tag": "BUTTON",
+      "top": 1432,
+      "bottom": 1480,
+      "visible": false
+    },
+    {
+      "text": "Export PNG",
+      "tag": "BUTTON",
+      "top": 1432,
+      "bottom": 1480,
+      "visible": false
+    },
+    {
+      "text": "Copy share link",
+      "tag": "BUTTON",
+      "top": 1432,
+      "bottom": 1480,
+      "visible": false
+    },
+    {
+      "text": "Clear card",
+      "tag": "BUTTON",
+      "top": 1492,
+      "bottom": 1536,
+      "visible": false
+    },
+    {
+      "text": "Buy worksheet pack — $9",
+      "tag": "A",
+      "top": 3520,
+      "bottom": 3569,
+      "visible": false
+    },
+    {
+      "text": "",
+      "tag": "INPUT",
+      "top": 3682,
+      "bottom": 3730,
+      "visible": false
+    },
+    {
+      "text": "Verify license",
+      "tag": "BUTTON",
+      "top": 3742,
+      "bottom": 3791,
+      "visible": false
+    },
+    {
+      "text": "terms",
+      "tag": "A",
+      "top": 3712,
+      "bottom": 3756,
+      "visible": false
+    },
+    {
+      "text": "Privacy",
+      "tag": "A",
+      "top": 3910,
+      "bottom": 3954,
+      "visible": false
+    },
+    {
+      "text": "Terms",
+      "tag": "A",
+      "top": 3910,
+      "bottom": 3954,
+      "visible": false
+    },
+    {
+      "text": "Built by Param Factory (external site)",
+      "tag": "A",
+      "top": 3910,
+      "bottom": 3954,
+      "visible": false
+    }
+  ],
+  "requests": [
+    "https://lesson-tab-card.sociobot.in/",
+    "https://lesson-tab-card.sociobot.in/assets/main-BrDDGZ3C.js",
+    "https://lesson-tab-card.sociobot.in/assets/main-Cs2CYvcv.css",
+    "https://lesson-tab-card.sociobot.in/assets/lesson-desk.webp"
+  ],
+  "errors": []
+}
+{
+  "viewport": {
+    "name": "mobile",
+    "width": 390,
+    "height": 844
+  },
+  "status": 200,
+  "url": "https://lesson-tab-card.sociobot.in/",
+  "title": "Lesson Tab Card — Make clear guitar lesson cards",
+  "h1": [
+    "MAKE A CLEAR GUITAR LESSON CARD"
+  ],
+  "viewportText": [
+    "LT",
+    "Editor",
+    "Demo",
+    "Privacy",
+    "Make a clear guitar lesson card",
+    "For teachers and players who need a readable card before the lesson moves on.",
+    "Try it with sample data",
+    "Loads a G to C warm-up below.",
+    "Works offline after the first visit",
+    "Your card stays in this browser",
+    "SVG and PNG exports stay free"
+  ],
+  "actions": [
+    {
+      "text": "Skip to main content",
+      "tag": "A",
+      "top": -74,
+      "bottom": -19,
+      "visible": false
+    },
+    {
+      "text": "LT LESSON TAB CARD",
+      "tag": "A",
+      "top": 10,
+      "bottom": 54,
+      "visible": true
+    },
+    {
+      "text": "Editor",
+      "tag": "A",
+      "top": 10,
+      "bottom": 54,
+      "visible": true
+    },
+    {
+      "text": "Demo",
+      "tag": "A",
+      "top": 10,
+      "bottom": 54,
+      "visible": true
+    },
+    {
+      "text": "Privacy",
+      "tag": "A",
+      "top": 10,
+      "bottom": 54,
+      "visible": true
+    },
+    {
+      "text": "Try it with sample data",
+      "tag": "A",
+      "top": 527,
+      "bottom": 575,
+      "visible": true
+    },
+    {
+      "text": "Export SVG",
+      "tag": "BUTTON",
+      "top": 2072,
+      "bottom": 2120,
+      "visible": false
+    },
+    {
+      "text": "Export PNG",
+      "tag": "BUTTON",
+      "top": 2132,
+      "bottom": 2181,
+      "visible": false
+    },
+    {
+      "text": "Copy share link",
+      "tag": "BUTTON",
+      "top": 2193,
+      "bottom": 2242,
+      "visible": false
+    },
+    {
+      "text": "Clear card",
+      "tag": "BUTTON",
+      "top": 2254,
+      "bottom": 2298,
+      "visible": false
+    },
+    {
+      "text": "Buy worksheet pack — $9",
+      "tag": "A",
+      "top": 4467,
+      "bottom": 4515,
+      "visible": false
+    },
+    {
+      "text": "",
+      "tag": "INPUT",
+      "top": 4628,
+      "bottom": 4676,
+      "visible": false
+    },
+    {
+      "text": "Verify license",
+      "tag": "BUTTON",
+      "top": 4688,
+      "bottom": 4737,
+      "visible": false
+    },
+    {
+      "text": "terms",
+      "tag": "A",
+      "top": 4699,
+      "bottom": 4743,
+      "visible": false
+    },
+    {
+      "text": "Privacy",
+      "tag": "A",
+      "top": 4969,
+      "bottom": 5013,
+      "visible": false
+    },
+    {
+      "text": "Terms",
+      "tag": "A",
+      "top": 4969,
+      "bottom": 5013,
+      "visible": false
+    },
+    {
+      "text": "Built by Param Factory (external site)",
+      "tag": "A",
+      "top": 4969,
+      "bottom": 5013,
+      "visible": false
+    }
+  ],
+  "requests": [
+    "https://lesson-tab-card.sociobot.in/",
+    "https://lesson-tab-card.sociobot.in/assets/main-BrDDGZ3C.js",
+    "https://lesson-tab-card.sociobot.in/assets/main-Cs2CYvcv.css",
+    "https://lesson-tab-card.sociobot.in/assets/lesson-desk.webp"
+  ],
+  "errors": []
+}

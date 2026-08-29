@@ -1,0 +1,504 @@
+===== CLAIM demo-first-screen =====
+npm run test:e2e -- --grep @claim:demo-first-screen
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:demo-first-screen
+
+[WebServer] (node:1358) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:39:1 › shows the populated sample on the first demo screen @claim:demo-first-screen (2.0s)
+
+  1 passed (11.1s)
+===== RESULT demo-first-screen: 0 =====
+===== CLAIM offline-reload =====
+npm run test:e2e -- --grep @claim:offline-reload
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:offline-reload
+
+[WebServer] (node:1537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:222:1 › reloads the demo offline after one visit @claim:offline-reload (1.5s)
+
+  1 passed (9.5s)
+===== RESULT offline-reload: 0 =====
+===== CLAIM browser-private =====
+npm run test:e2e -- --grep @claim:browser-private
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:browser-private
+
+[WebServer] (node:1712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:174:1 › keeps editing, exports, and private share text out of HTTP requests @claim:browser-private (3.9s)
+
+  1 passed (11.8s)
+===== RESULT browser-private: 0 =====
+===== CLAIM demo-isolation =====
+npm run test:e2e -- --grep @claim:demo-isolation
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:demo-isolation
+
+[WebServer] (node:1905) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:1955) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1955) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:134:1 › keeps every real storage key unchanged throughout demo mode @claim:demo-isolation (2.1s)
+
+  1 passed (10.1s)
+===== RESULT demo-isolation: 0 =====
+===== CLAIM preview-updates =====
+npm run test:e2e -- --grep @claim:preview-updates
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:preview-updates
+
+[WebServer] (node:2080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:2129) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2129) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:60:1 › updates the rendered card while the lesson changes @claim:preview-updates (1.2s)
+
+  1 passed (9.3s)
+===== RESULT preview-updates: 0 =====
+===== CLAIM lesson-card-fields =====
+npm run test:e2e -- --grep @claim:lesson-card-fields
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:lesson-card-fields
+
+[WebServer] (node:2256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2287) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:2305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:69:1 › renders every lesson-card field from the sample @claim:lesson-card-fields (1.1s)
+
+  1 passed (9.1s)
+===== RESULT lesson-card-fields: 0 =====
+===== CLAIM free-exports =====
+npm run test:e2e -- --grep @claim:free-exports
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:free-exports
+
+[WebServer] (node:2454) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:2503) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2503) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:5:1 › exports working SVG and PNG files @claim:free-exports (1.2s)
+
+  1 passed (9.3s)
+===== RESULT free-exports: 0 =====
+===== CLAIM local-draft-storage =====
+npm run test:e2e -- --grep @claim:local-draft-storage
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:local-draft-storage
+
+[WebServer] (node:2636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2667) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:2685) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2685) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:97:1 › keeps the real draft in this browser after reload @claim:local-draft-storage (1.2s)
+
+  1 passed (9.3s)
+===== RESULT local-draft-storage: 0 =====
+===== CLAIM clear-saved-card =====
+npm run test:e2e -- --grep @claim:clear-saved-card
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:clear-saved-card
+
+[WebServer] (node:2810) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:2860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:201:1 › removes the saved lesson when Clear card is confirmed @claim:clear-saved-card (2.2s)
+
+  1 passed (10.1s)
+===== RESULT clear-saved-card: 0 =====
+===== CLAIM keyboard-shortcuts =====
+npm run test:e2e -- --grep @claim:keyboard-shortcuts
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:keyboard-shortcuts
+
+[WebServer] (node:2987) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3019) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:211:1 › runs the documented editor keyboard shortcuts @claim:keyboard-shortcuts (1.4s)
+
+  1 passed (9.6s)
+===== RESULT keyboard-shortcuts: 0 =====
+===== CLAIM license-free-card-exports =====
+npm run test:e2e -- --grep @claim:license-free-card-exports
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:license-free-card-exports
+
+[WebServer] (node:3179) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3210) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:106:1 › keeps SVG and PNG exports available without a license or checkout @claim:license-free-card-exports (1.3s)
+
+  1 passed (9.5s)
+===== RESULT license-free-card-exports: 0 =====
+===== CLAIM no-account-no-tracking =====
+npm run test:e2e -- --grep @claim:no-account-no-tracking
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:no-account-no-tracking
+
+[WebServer] (node:3356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3387) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3405) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3405) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:122:1 › uses no song library, playback, account, or tracking request to make a card @claim:no-account-no-tracking (1.2s)
+
+  1 passed (9.1s)
+===== RESULT no-account-no-tracking: 0 =====
+===== CLAIM share-link =====
+npm run test:e2e -- --grep @claim:share-link
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:share-link
+
+[WebServer] (node:3537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:27:1 › restores the exact lesson from its private fragment link @claim:share-link (1.5s)
+
+  1 passed (9.6s)
+===== RESULT share-link: 0 =====
+===== CLAIM legacy-link-migration =====
+npm run test:e2e -- --grep @claim:legacy-link-migration
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:legacy-link-migration
+
+[WebServer] (node:3710) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3778) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3778) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:330:1 › restores old query share links, then removes their exposed query @claim:legacy-link-migration @regression:legacy-share-link (1.2s)
+
+  1 passed (9.3s)
+===== RESULT legacy-link-migration: 0 =====
+===== CLAIM syntax-validation =====
+npm run test:e2e -- --grep @claim:syntax-validation
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:syntax-validation
+
+[WebServer] (node:3907) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3938) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:80:1 › names invalid lesson fields before export without malformed preview SVG @claim:syntax-validation @regression:invalid-fret-preview (1.4s)
+
+  1 passed (9.5s)
+===== RESULT syntax-validation: 0 =====
+===== CLAIM syntax-boundaries =====
+npm run test:e2e -- --grep @claim:syntax-boundaries
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:syntax-boundaries
+
+[WebServer] (node:4083) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4114) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:4132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:343:1 › accepts documented input bounds and rejects their neighbours @claim:syntax-boundaries (1.8s)
+
+  1 passed (10.0s)
+===== RESULT syntax-boundaries: 0 =====
+===== CLAIM worksheet-pack =====
+npm run test:e2e -- --grep @claim:worksheet-pack
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:worksheet-pack
+
+[WebServer] (node:4258) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4289) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:4307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:238:1 › exports a four-card sample worksheet @claim:worksheet-pack (1.1s)
+
+  1 passed (9.1s)
+===== RESULT worksheet-pack: 0 =====
+===== CLAIM paid-license-flow =====
+npm run test:e2e -- --grep @claim:paid-license-flow
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:paid-license-flow
+
+[WebServer] (node:4454) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:4504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:363:1 › captures a returned license and activates the worksheet pack @claim:paid-license-flow (847ms)
+
+  1 passed (9.0s)
+===== RESULT paid-license-flow: 0 =====
+===== CLAIM paid-license-offline-recovery =====
+npm run test:e2e -- --grep @claim:paid-license-offline-recovery
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:paid-license-offline-recovery
+
+[WebServer] (node:4630) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4661) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:4679) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4679) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:373:1 › keeps a stale cached valid worksheet license active while offline, then refreshes it after reconnecting @claim:paid-license-offline-recovery (1.4s)
+
+  1 passed (9.6s)
+===== RESULT paid-license-offline-recovery: 0 =====
+===== CLAIM rejected-returned-license =====
+npm run test:e2e -- --grep @claim:rejected-returned-license
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:rejected-returned-license
+
+[WebServer] (node:4804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4835) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:4853) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4853) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:408:1 › shows recovery feedback when a returned license is rejected @claim:rejected-returned-license (877ms)
+
+  1 passed (9.0s)
+===== RESULT rejected-returned-license: 0 =====
+===== CLAIM source-length-boundary =====
+npm run test:e2e -- --grep @claim:source-length-boundary
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:source-length-boundary
+
+[WebServer] (node:4994) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5026) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:5044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:441:1 › shows the exact source-length recovery at 4,001 characters @claim:source-length-boundary (1.4s)
+
+  1 passed (9.5s)
+===== RESULT source-length-boundary: 0 =====
+===== CLAIM license-restore =====
+npm run test:e2e -- --grep @claim:license-restore
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:license-restore
+
+[WebServer] (node:5169) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:5218) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5218) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:453:1 › activates the worksheet pack from a pasted valid license @claim:license-restore (1.1s)
+
+  1 passed (9.2s)
+===== RESULT license-restore: 0 =====
+===== CLAIM billing-request-privacy =====
+npm run test:e2e -- --grep @claim:billing-request-privacy
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:billing-request-privacy
+
+[WebServer] (node:5343) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5374) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:5392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:465:1 › keeps lesson syntax out of checkout and verification requests @claim:billing-request-privacy (1.9s)
+
+  1 passed (9.9s)
+===== RESULT billing-request-privacy: 0 =====
+===== CLAIM paid-checkout =====
+npm run test:e2e -- --grep @claim:paid-checkout
+
+> lesson-tab-card@1.0.0 test:e2e
+> playwright test --grep @claim:paid-checkout
+
+[WebServer] (node:5520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:5569) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5569) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/app.spec.ts:501:1 › starts the advertised $9 hosted checkout @claim:paid-checkout (675ms)
+
+  1 passed (8.4s)
+===== RESULT paid-checkout: 0 =====

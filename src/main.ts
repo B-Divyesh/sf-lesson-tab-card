@@ -3,6 +3,7 @@ import { cardSvg } from './card-svg';
 import { decodeSyntax, encodeSyntax, parseSyntax, sampleSyntax } from './model';
 import { downloadPng, downloadSvg } from './export';
 import { cachedLicenseIsValid, captureReturnedLicense, checkoutUrl, hasStoredLicense, restoreLicense, verifyStoredLicense } from './license';
+import { releaseLabel, siteOrigin } from './site-config';
 
 const app = document.querySelector<HTMLDivElement>('#app') as HTMLDivElement;
 if (!app) throw new Error('App root not found');
@@ -86,13 +87,15 @@ function setMetadata(path: string) {
     '/privacy': ['Privacy — Lesson Tab Card', 'Read how Lesson Tab Card stores lesson syntax and license details in your browser.'],
     '/terms': ['Terms — Lesson Tab Card', 'Read the terms for using Lesson Tab Card and its optional worksheet license.'],
   };
-  const [title, description] = values[path] ?? ['Page not found — Lesson Tab Card', 'Return to the Lesson Tab Card editor.'];
+  const knownRoute = Object.hasOwn(values, path);
+  const [title, description] = knownRoute ? values[path] : ['Page not found — Lesson Tab Card', 'Return to the Lesson Tab Card editor.'];
+  const canonicalPath = knownRoute ? path : '/404.html';
   document.title = title;
   document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content', description);
-  document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href', `https://lesson-tab-card.sociobot.in${path}`);
+  document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href', `${siteOrigin}${canonicalPath}`);
   document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute('content', title);
   document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute('content', description);
-  document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', `https://lesson-tab-card.sociobot.in${path}`);
+  document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', `${siteOrigin}${canonicalPath}`);
   document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.setAttribute('content', title);
   document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')?.setAttribute('content', description);
 }
@@ -380,7 +383,7 @@ function header() {
 }
 
 function footer() {
-  return `<footer><p><b>Lesson Tab Card</b> — Make a clear guitar lesson card.</p><nav aria-label="Footer navigation"><a href="/privacy" data-route>Privacy</a><a href="/terms" data-route>Terms</a><a href="https://sociobot.in">Built by Param Factory <span class="sr-only">(external site)</span></a></nav><p>v1.2 / build 2026.08.29</p></footer>`;
+  return `<footer><p><b>Lesson Tab Card</b> — Make a clear guitar lesson card.</p><nav aria-label="Footer navigation"><a href="/privacy" data-route>Privacy</a><a href="/terms" data-route>Terms</a><a href="https://sociobot.in">Built by Param Factory <span class="sr-only">(external site)</span></a></nav><p>${releaseLabel}</p></footer>`;
 }
 
 function demoBanner() {

@@ -311,6 +311,35 @@ test('uses real route titles and renders legal pages', async ({ page }) => {
   await expect(page.getByLabel('Footer navigation').getByRole('link', { name: 'Terms' })).toHaveAttribute('href', '/terms');
 });
 
+test('serves complete metadata and the current release on every not-found route', async ({ page }) => {
+  const expected = {
+    title: 'Page not found — Lesson Tab Card',
+    description: 'Return to the Lesson Tab Card editor.',
+    canonical: 'https://lesson-tab-card.sociobot.in/404.html',
+    image: 'https://lesson-tab-card.sociobot.in/assets/social-card.webp',
+    release: 'v1.2 / build 2026.08.29',
+  };
+
+  for (const path of ['/404.html', '/definitely-not-a-real-route']) {
+    await page.goto(path);
+    await expect(page).toHaveTitle(expected.title);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', expected.description);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', expected.canonical);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', expected.title);
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', expected.description);
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', expected.canonical);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', expected.image);
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image');
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', expected.title);
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', expected.description);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', expected.image);
+    await expect(page.locator('footer')).toContainText(expected.release);
+  }
+
+  await page.goto('/');
+  await expect(page.locator('footer')).toContainText(expected.release);
+});
+
 test('rejects overlong printable text instead of truncating it @regression:printable-lengths', async ({ page }) => {
   await page.goto('/demo');
   const title = 'T'.repeat(27);

@@ -186,13 +186,13 @@
       "degree": 9
     },
     {
-      "id": "src_card_svg_cardsvg",
-      "label": "cardSvg()",
+      "id": "src_model_parsesyntax",
+      "label": "parseSyntax()",
       "degree": 9
     },
     {
-      "id": "src_model_parsesyntax",
-      "label": "parseSyntax()",
+      "id": "src_card_svg_cardsvg",
+      "label": "cardSvg()",
       "degree": 9
     },
     {
@@ -213,22 +213,11 @@
   ],
   "surprises": [
     {
-      "source": "exportCard()",
-      "target": "downloadPng()",
+      "source": "bindPaid()",
+      "target": "restoreLicense()",
       "source_files": [
         "src/main.ts",
-        "src/export.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "exportCard()",
-      "target": "downloadSvg()",
-      "source_files": [
-        "src/main.ts",
-        "src/export.ts"
+        "src/license.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
@@ -246,18 +235,29 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "updatePreview()",
-      "target": "cardSvg()",
+      "source": "bindPaid()",
+      "target": "downloadSvg()",
       "source_files": [
         "src/main.ts",
-        "src/card-svg.ts"
+        "src/export.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "bridges separate communities"
     },
     {
-      "source": "bindPaid()",
+      "source": "exportCard()",
+      "target": "downloadPng()",
+      "source_files": [
+        "src/main.ts",
+        "src/export.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "exportCard()",
       "target": "downloadSvg()",
       "source_files": [
         "src/main.ts",

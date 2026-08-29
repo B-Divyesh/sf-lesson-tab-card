@@ -98,6 +98,7 @@ function setMetadata(path: string) {
   document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.setAttribute('content', `${siteOrigin}${canonicalPath}`);
   document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')?.setAttribute('content', title);
   document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')?.setAttribute('content', description);
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:url"]')?.setAttribute('content', `${siteOrigin}${canonicalPath}`);
 }
 
 function renderEditorPage(url: URL) {

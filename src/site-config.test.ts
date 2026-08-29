@@ -18,6 +18,7 @@ describe('static deployment routes', () => {
     expect(page).toContain(`href="%SITE_ORIGIN%/404.html"`);
     expect(page).toContain('<meta property="og:title" content="Page not found — Lesson Tab Card" />');
     expect(page).toContain('<meta name="twitter:card" content="summary_large_image" />');
+    expect(page).toContain('<meta name="twitter:url" content="%SITE_ORIGIN%/404.html" />');
     expect(siteOrigin).toBe('https://lesson-tab-card.sociobot.in');
     expect(page).toContain('%RELEASE_LABEL%');
     expect(releaseLabel).toBe('v1.2 / build 2026.08.29');

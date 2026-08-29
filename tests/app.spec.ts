@@ -333,6 +333,7 @@ test('serves complete metadata and the current release on every not-found route'
     await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', expected.title);
     await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', expected.description);
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', expected.image);
+    await expect(page.locator('meta[name="twitter:url"]')).toHaveAttribute('content', expected.canonical);
     await expect(page.locator('footer')).toContainText(expected.release);
   }
 

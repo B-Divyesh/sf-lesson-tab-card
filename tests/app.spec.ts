@@ -373,6 +373,9 @@ test('captures a returned license and activates the worksheet pack @claim:paid-l
 test('keeps a stale cached valid worksheet license active while offline, then refreshes it after reconnecting @claim:paid-license-offline-recovery', async ({ page, context }) => {
   let online = false;
   let verificationRequests = 0;
+  const consoleErrors: string[] = [];
+  page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
+  page.on('pageerror', (error) => consoleErrors.push(error.message));
   await page.route('https://api.sociobot.in/api/v1/products/lesson-tab-card/verify?license=cached-paid-token', async (route) => {
     if (!online) return route.abort('internetdisconnected');
     verificationRequests += 1;
@@ -399,6 +402,7 @@ test('keeps a stale cached valid worksheet license active while offline, then re
   await expect(page.getByText('Worksheet pack active on this browser.')).toBeVisible();
   const refreshedAt = await page.evaluate(() => JSON.parse(localStorage.getItem('sb_license_verdict:lesson-tab-card') ?? '{}').checkedAt);
   expect(Date.now() - refreshedAt).toBeLessThan(60_000);
+  expect(consoleErrors).toEqual([]);
 });
 
 test('shows recovery feedback when a returned license is rejected @claim:rejected-returned-license', async ({ page }) => {

@@ -30,6 +30,7 @@ export async function verifyStoredLicense(): Promise<boolean> {
   if (!token) return false;
   const cached = readVerdict();
   if (cached && Date.now() - cached.checkedAt < 86_400_000) return cached.valid;
+  if (!navigator.onLine) return cached?.valid === true;
   return verifyToken(token);
 }
 
